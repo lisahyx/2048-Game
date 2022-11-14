@@ -1,5 +1,6 @@
-package com.example.comp2042_cw_hfylh2;
+package com.Game;
 
+import com.EndGame.EndGame;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
