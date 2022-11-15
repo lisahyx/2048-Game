@@ -1,4 +1,4 @@
-module com.example.comp2042_cw_hfylh2 {
+module com {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -8,4 +8,6 @@ module com.example.comp2042_cw_hfylh2 {
     opens com.EndGame to javafx.fxml;
     exports com.User;
     opens com.User to javafx.fxml;
+    exports com.StartGame;
+    opens com.StartGame to javafx.fxml;
 }

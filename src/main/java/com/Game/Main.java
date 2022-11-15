@@ -1,8 +1,10 @@
 package com.Game;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -53,6 +55,7 @@ public class Main extends Application {
         backgroundOfMenuForPlay.setY(180);
         accountRoot.getChildren().add(backgroundOfMenuForPlay);
 
+        /*
         Group gameRoot = new Group();
         setGameRoot(gameRoot);
         Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
@@ -62,7 +65,18 @@ public class Main extends Application {
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
         primaryStage.show();
+        */
+
+        Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
+
+        // Create the Scene
+        Scene mainMenu = new Scene(root);
+        // Set the Scene to the Stage
+        primaryStage.setScene(mainMenu);
+        // Display the Stage
+        primaryStage.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);
