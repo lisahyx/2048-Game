@@ -42,7 +42,7 @@ public class EndGame {
         // quit button
         Button quitButton = new Button("QUIT");
         quitButton.setPrefSize(100,30);
-        quitButton.setTextFill(Color.PINK);
+        quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
         quitButton.relocate(250,550);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
