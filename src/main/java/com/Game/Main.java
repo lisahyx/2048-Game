@@ -1,13 +1,18 @@
 package com.Game;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 
@@ -17,7 +22,8 @@ public class Main extends Application {
     static final int WIDTH = 900;
     static final int HEIGHT = 900;
     private Group gameRoot = new Group();
-    private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+    private Scene gameScene;
+
     private static Scanner input= new Scanner(System.in);
 
     public void setGameScene(Scene gameScene) {
@@ -29,7 +35,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         Group menuRoot = new Group();
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
@@ -55,26 +61,29 @@ public class Main extends Application {
         backgroundOfMenuForPlay.setY(180);
         accountRoot.getChildren().add(backgroundOfMenuForPlay);
 
-        /*
-        Group gameRoot = new Group();
         setGameRoot(gameRoot);
-        Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+
+        //gameScene
+        gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         setGameScene(gameScene);
+
         primaryStage.setScene(gameScene);
-        GameScene game = new GameScene();
+        Game game = new Game();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
-        primaryStage.show();
-        */
 
+        /*
         Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
 
         // Create the Scene
         Scene mainMenu = new Scene(root);
         // Set the Scene to the Stage
         primaryStage.setScene(mainMenu);
+
+         */
         // Display the Stage
         primaryStage.show();
+
     }
 
 
