@@ -45,7 +45,7 @@ public class EndGame {
 
         // quit button
         Button quitButton = new Button("QUIT");
-        quitButton.setPrefSize(110,35);
+        quitButton.setPrefSize(85,35);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
 
@@ -53,9 +53,12 @@ public class EndGame {
 
         Stage window = primaryStage;
 
-        VBox vBox = new VBox(10);
+        VBox vBox = new VBox(5);
         vBox.setAlignment(Pos. CENTER);
+        vBox.setMargin(text, new Insets(-80, 0, 0, 0));
+        vBox.setMargin(scoreText, new Insets(0, 0, 120, 0));
         vBox.prefWidthProperty().bind(window.widthProperty().multiply(0.90));
+        vBox.prefHeightProperty().bind(window.heightProperty());
 
         vBox.getChildren().addAll(text, scoreText, quitButton);
 
