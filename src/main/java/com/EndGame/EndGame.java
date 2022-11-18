@@ -45,7 +45,7 @@ public class EndGame {
 
         // quit button
         Button quitButton = new Button("QUIT");
-        quitButton.setPrefSize(110,40);
+        quitButton.setPrefSize(110,35);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
 
