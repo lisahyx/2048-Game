@@ -20,6 +20,13 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * This is a java program for a 2048 game.
+ *
+ * @author  Lisa Ho
+ * @version 1.0
+ * @since   2020-11-1
+ */
 public class Main extends Application {
     static final int WIDTH = 850;
     static final int HEIGHT = 850;
@@ -75,6 +82,7 @@ public class Main extends Application {
 
 
 
+        // display main menu
         Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
 
         // Create the Scene
