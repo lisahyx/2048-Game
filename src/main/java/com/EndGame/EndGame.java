@@ -35,15 +35,16 @@ public class EndGame {
 
         Text scoreText = new Text(score+"");
         scoreText.setFill(Color.BLACK);
-        scoreText.relocate(250,600);
+        scoreText.relocate(250,400);
         scoreText.setFont(Font.font(80));
         root.getChildren().add(scoreText);
 
+        // quit button
         Button quitButton = new Button("QUIT");
         quitButton.setPrefSize(100,30);
         quitButton.setTextFill(Color.PINK);
         root.getChildren().add(quitButton);
-        quitButton.relocate(100,800);
+        quitButton.relocate(250,550);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
