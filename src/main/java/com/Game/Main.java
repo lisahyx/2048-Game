@@ -13,14 +13,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Scanner;
 
 public class Main extends Application {
-    static final int WIDTH = 900;
-    static final int HEIGHT = 900;
+    static final int WIDTH = (int) Screen.getPrimary().getBounds().getWidth();
+    static final int HEIGHT = (int) Screen.getPrimary().getBounds().getHeight();
     private Group gameRoot = new Group();
     private Scene gameScene;
 
