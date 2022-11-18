@@ -17,11 +17,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main extends Application {
-    static final int WIDTH = (int) Screen.getPrimary().getBounds().getWidth();
-    static final int HEIGHT = (int) Screen.getPrimary().getBounds().getHeight();
+    static final int WIDTH = 850;
+    static final int HEIGHT = 850;
     private Group gameRoot = new Group();
     private Scene gameScene;
 
@@ -36,7 +37,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
         Group menuRoot = new Group();
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
@@ -73,7 +74,7 @@ public class Main extends Application {
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
 
-        /*
+
         Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
 
         // Create the Scene
@@ -81,8 +82,9 @@ public class Main extends Application {
         // Set the Scene to the Stage
         primaryStage.setScene(mainMenu);
 
-         */
+
         // Display the Stage
+        primaryStage.setTitle("2048 Game");
         primaryStage.show();
         primaryStage.setMaximized(true);
     }
