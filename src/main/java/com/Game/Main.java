@@ -83,7 +83,7 @@ public class Main extends Application {
          */
         // Display the Stage
         primaryStage.show();
-
+        primaryStage.setMaximized(true);
     }
 
 
