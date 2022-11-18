@@ -28,8 +28,8 @@ import java.util.Scanner;
  * @since   2020-11-1
  */
 public class Main extends Application {
-    static final int WIDTH = 850;
-    static final int HEIGHT = 850;
+    static final int WIDTH = 900;
+    static final int HEIGHT = 650;
     private Group gameRoot = new Group();
     private Scene gameScene;
 
@@ -76,12 +76,14 @@ public class Main extends Application {
         gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         setGameScene(gameScene);
 
+
+
         primaryStage.setScene(gameScene);
         Game game = new Game();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
 
-
+/*
         // display main menu
         Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
 
@@ -90,11 +92,12 @@ public class Main extends Application {
         // Set the Scene to the Stage
         primaryStage.setScene(mainMenu);
 
+ */
 
         // Display the Stage
         primaryStage.setTitle("2048 Game");
         primaryStage.show();
-        primaryStage.setMaximized(true);
+
     }
 
 
