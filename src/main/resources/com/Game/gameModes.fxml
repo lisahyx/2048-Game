@@ -10,10 +10,10 @@
    <children>
       <VBox layoutX="368.0" layoutY="104.0" prefHeight="191.0" prefWidth="90.0" spacing="20">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="4 x 4" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="5 x 5" />
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="6 x 6" />
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Blackout" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="4 x 4" id="4x4" onAction="#buttonListener"/>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="5 x 5" id="5x5" onAction="#buttonListener"/>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="6 x 6" id="6x6" onAction="#buttonListener"/>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Blackout" id="blackout" onAction="#buttonListener"/>
          </children>
       </VBox>
       <Text layoutX="83.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT A GAME MODE" wrappingWidth="206.7210693359375">
