@@ -1,9 +1,14 @@
 package com.StartGame;
 
 import com.Game.Game;
+import com.Game.GameScene;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -14,6 +19,36 @@ import javafx.stage.Stage;
 import java.util.Scanner;
 
 public class GameModes {
+    @FXML
+    private Button b2;
+
+    @FXML
+    private Button b3;
+
+    public void buttonListener (ActionEvent event) throws Exception {
+        String id = ((Node) event.getSource()).getId();
+
+        switch(id) {
+            case "4x4":
+                start();
+                break;
+
+            case "5x5":
+                GameScene a = new GameScene();
+                a.setN(5);
+
+                start();
+                break;
+
+            case "6x6":
+                GameScene a = new GameScene();
+                a.setN(6);
+
+                start();
+                break;
+        }
+    }
+
     static final int WIDTH = 900;
     static final int HEIGHT = 650;
     private Group gameRoot = new Group();
