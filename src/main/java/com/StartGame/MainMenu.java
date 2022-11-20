@@ -35,7 +35,7 @@ public class MainMenu {
     }
 
     @FXML
-    EventHandler<ActionEvent> handleButtonAction = new EventHandler<ActionEvent>() {
+    EventHandler<ActionEvent> displayMainMenu = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
             Stage stage;
@@ -43,7 +43,7 @@ public class MainMenu {
 
             stage = (Stage) startGame.getScene().getWindow();
             try {
-                root = FXMLLoader.load(getClass().getResource("/com/Game/game1.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/com/Game/gameModes.fxml"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
