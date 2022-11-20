@@ -61,8 +61,8 @@ public class MainMenu {
     };
 
     // below is stage
-    static final int WIDTH = (int) Screen.getPrimary().getBounds().getWidth();
-    static final int HEIGHT = (int) Screen.getPrimary().getBounds().getHeight();
+    static final int WIDTH = 900;
+    static final int HEIGHT = 650;
     private Group gameRoot = new Group();
     private Scene gameScene;
 
