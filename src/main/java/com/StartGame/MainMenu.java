@@ -1,6 +1,8 @@
 package com.StartGame;
 
 import com.Game.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,26 +20,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
-import java.security.PrivateKey;
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class MainMenu {
     @FXML
-    private ChoiceBox gameMode;
-
-    @FXML
     private Button startGame;
-    ObservableList<String> modes = FXCollections.observableArrayList("4x4","5x5","6x6","Blackout");
 
     public void initialize() {
-        gameMode.setValue("4x4"); // this statement shows default value
-        gameMode.setItems(modes);
-
+        startGame.setOnAction(displayMainMenu);
     }
 
     @FXML
@@ -60,7 +54,6 @@ public class MainMenu {
         }
     };
 
-    // below is stage
     static final int WIDTH = 900;
     static final int HEIGHT = 650;
     private Group gameRoot = new Group();
@@ -116,8 +109,6 @@ public class MainMenu {
         // Display the Stage
         primaryStage.show();
     }
-
-
 };
 
 
