@@ -19,14 +19,9 @@ import javafx.stage.Stage;
 import java.util.Scanner;
 
 public class GameModes {
-    @FXML
-    private Button b2;
-
-    @FXML
-    private Button b3;
-
     public void buttonListener (ActionEvent event) throws Exception {
         String id = ((Node) event.getSource()).getId();
+        GameScene a = new GameScene();
 
         switch(id) {
             case "4x4":
@@ -34,14 +29,13 @@ public class GameModes {
                 break;
 
             case "5x5":
-                GameScene a = new GameScene();
                 a.setN(5);
 
                 start();
                 break;
 
             case "6x6":
-                GameScene a = new GameScene();
+                a = new GameScene();
                 a.setN(6);
 
                 start();
