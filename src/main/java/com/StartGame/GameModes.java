@@ -35,7 +35,6 @@ public class GameModes {
                 break;
 
             case "6x6":
-                a = new GameScene();
                 a.setN(6);
 
                 start();
