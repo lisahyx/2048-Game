@@ -2,9 +2,11 @@ package com.EndGame;
 
 import com.StartGame.GameModes;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import static com.Game.GameScene.getN;
@@ -86,6 +89,27 @@ public class EndGame {
         mainPane = new StackPane(vBox);
         mainPane.setPadding(new Insets(30));
         root.getChildren().add(mainPane);
+
+        //main menu button onClick
+        mainMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                // Create the Scene
+                Scene mainMenu = new Scene(root);
+                // Set the Scene to the Stage
+                primaryStage.setScene(mainMenu);
+                // Display the Stage
+                primaryStage.setTitle("2048 Game");
+                primaryStage.show();
+            }
+        });
 
         //retry button onClick
         retryButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
