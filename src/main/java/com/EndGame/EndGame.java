@@ -1,5 +1,6 @@
 package com.EndGame;
 
+import com.StartGame.GameModes;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,6 +20,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Optional;
+
+import static com.Game.GameScene.getN;
 
 /**
  * A class for game over screen.
@@ -76,15 +79,26 @@ public class EndGame {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(mainMenuButton, retryButton, quitButton);
         hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(80);
+        hBox.setSpacing(60);
 
         vBox.getChildren().addAll(text, scoreText, hBox);
-
-
 
         mainPane = new StackPane(vBox);
         mainPane.setPadding(new Insets(30));
         root.getChildren().add(mainPane);
+
+        //retry button onClick
+        retryButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                GameModes a = new GameModes();
+                try {
+                    a.start();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
