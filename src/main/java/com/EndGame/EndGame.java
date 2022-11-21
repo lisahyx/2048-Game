@@ -56,6 +56,12 @@ public class EndGame {
         mainMenuButton.setTextFill(Color.BLACK);
         root.getChildren().add(mainMenuButton);
 
+        // retry button
+        Button retryButton = new Button("RETRY");
+        retryButton.setPrefSize(85,35);
+        retryButton.setTextFill(Color.BLACK);
+        root.getChildren().add(retryButton);
+
         StackPane mainPane;
 
         Stage window = primaryStage;
@@ -68,9 +74,9 @@ public class EndGame {
         vBox.prefHeightProperty().bind(window.heightProperty());
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(mainMenuButton, quitButton);
+        hBox.getChildren().addAll(mainMenuButton, retryButton, quitButton);
         hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(100);
+        hBox.setSpacing(80);
 
         vBox.getChildren().addAll(text, scoreText, hBox);
 
