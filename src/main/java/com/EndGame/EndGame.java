@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -49,6 +50,12 @@ public class EndGame {
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
 
+        // main menu button
+        Button mainMenuButton = new Button("BACK TO MAIN MENU");
+        mainMenuButton.setPrefSize(150,35);
+        mainMenuButton.setTextFill(Color.BLACK);
+        root.getChildren().add(mainMenuButton);
+
         StackPane mainPane;
 
         Stage window = primaryStage;
@@ -60,7 +67,14 @@ public class EndGame {
         vBox.prefWidthProperty().bind(window.widthProperty().multiply(0.90));
         vBox.prefHeightProperty().bind(window.heightProperty());
 
-        vBox.getChildren().addAll(text, scoreText, quitButton);
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(mainMenuButton, quitButton);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(100);
+
+        vBox.getChildren().addAll(text, scoreText, hBox);
+
+
 
         mainPane = new StackPane(vBox);
         mainPane.setPadding(new Insets(30));
