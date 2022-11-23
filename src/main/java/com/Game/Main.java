@@ -39,6 +39,8 @@ public class Main extends Application {
         primaryStage.setScene(mainMenu);
         // Display the Stage
         primaryStage.setTitle("2048 Game");
+        // center on screen
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
