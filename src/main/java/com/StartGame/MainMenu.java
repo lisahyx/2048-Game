@@ -7,12 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,8 +15,12 @@ public class MainMenu {
     @FXML
     private Button startGame;
 
+    @FXML
+    private Button colorTheme;
+
     public void initialize() {
         startGame.setOnAction(displayGameModes);
+        colorTheme.setOnAction(displayThemeChooser);
     }
 
     @FXML
@@ -46,14 +44,24 @@ public class MainMenu {
     };
 
     @FXML
-    Pane startPane;
-    @FXML
-    private ColorPicker gameTheme;
+    EventHandler<ActionEvent> displayThemeChooser = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            Stage stage;
+            Parent root;
 
-    public void changeColor(ActionEvent event) {
-        Color myColor = gameTheme.getValue();
-        startPane.setBackground(new Background(new BackgroundFill(myColor, null, null)));
-    }
+            stage = (Stage) startGame.getScene().getWindow();
+            try {
+                root = FXMLLoader.load(getClass().getResource("/com/Game/colorTheme.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    };
 };
 
 
