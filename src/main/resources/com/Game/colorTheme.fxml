@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.Game.ColorTheme"
-            prefHeight="400.0" prefWidth="600.0">
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.StartGame.ColorTheme" fx:id="pane">
+   <children>
+       <Text layoutX="83.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT MAIN COLOR THEME" wrappingWidth="206.7210693359375">
+           <font>
+               <Font size="34.0" />
+           </font>
+       </Text>
+       <VBox layoutX="368.0" layoutY="104.0" prefHeight="191.0" prefWidth="90.0" spacing="20">
+           <children>
+               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Black" id="black" onAction="#changeColor"/>
+               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="White" id="white" onAction="#changeColor"/>
+               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Green" id="green" onAction="#changeColor"/>
+           </children>
+       </VBox>
+   </children>
 </AnchorPane>
