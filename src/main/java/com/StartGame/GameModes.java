@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -25,18 +26,21 @@ public class GameModes {
 
         switch(id) {
             case "4x4":
+                ((Node) event.getSource()).getScene().getWindow().hide();
                 start();
                 break;
 
             case "5x5":
                 a.setN(5);
 
+                ((Node) event.getSource()).getScene().getWindow().hide();
                 start();
                 break;
 
             case "6x6":
                 a.setN(6);
 
+                ((Node) event.getSource()).getScene().getWindow().hide();
                 start();
                 break;
         }
@@ -86,6 +90,19 @@ public class GameModes {
 
         //gameScene
         gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+
+        ColorTheme a = new ColorTheme();
+        // gameModePane = a.getPane();
+       // gameModePane.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        ColorTheme n = new ColorTheme();
+        int num;
+        num = n.num;
+        System.out.print(num);
+        if (num == 1) {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
+        }
+
         setGameScene(gameScene);
 
         Stage primaryStage = new Stage();
@@ -97,4 +114,14 @@ public class GameModes {
         // Display the Stage
         primaryStage.show();
     }
+
+    @FXML
+    Pane gameModePane;
+
+
+
+
+
+
+
 }
