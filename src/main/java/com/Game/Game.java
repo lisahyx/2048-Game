@@ -20,7 +20,7 @@ public class Game extends MoveDirection{
     public void setScore(long score) {
         this.score = score;
     }
-    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -45,29 +45,27 @@ public class Game extends MoveDirection{
 
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
             Platform.runLater(() -> {
-                int haveEmptyCell;
+
                 if (key.getCode() == KeyCode.DOWN) {
                     Game.this.moveDown();
+                    Game.this.sumCellNumbersToScore();
+                    checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 } else if (key.getCode() == KeyCode.UP) {
                     Game.this.moveUp();
+                    Game.this.sumCellNumbersToScore();
+                    checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 } else if (key.getCode() == KeyCode.LEFT) {
                     Game.this.moveLeft();
+                    Game.this.sumCellNumbersToScore();
+                    checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 } else if (key.getCode() == KeyCode.RIGHT) {
                     Game.this.moveRight();
+                    Game.this.sumCellNumbersToScore();
+                    checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 }
-                Game.this.sumCellNumbersToScore();
-                scoreText.setText(score + "");
-                haveEmptyCell = Game.this.haveEmptyCell();
-                if (haveEmptyCell == -1) {
-                    if (Game.this.canNotMove()) {
-                        primaryStage.setScene(endGameScene);
 
-                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
-                        root.getChildren().clear();
-                        score = 0;
-                    }
-                } else if(haveEmptyCell == 1)
-                    Game.this.randomFillNumber(2);
+                scoreText.setText(score + "");
+
             });
         });
     }
@@ -78,5 +76,20 @@ public class Game extends MoveDirection{
                 score += cells[i][j].getNumber();
             }
         }
+    }
+
+    void checkEmptyCells (Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+        int haveEmptyCell;
+        haveEmptyCell = Game.this.haveEmptyCell();
+        if (haveEmptyCell == -1) {
+            if (Game.this.canNotMove()) {
+                primaryStage.setScene(endGameScene);
+
+                EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                root.getChildren().clear();
+                score = 0;
+            }
+        } else if(haveEmptyCell == 1)
+            Game.this.randomFillNumber(2);
     }
 }
