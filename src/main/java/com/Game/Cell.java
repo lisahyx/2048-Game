@@ -1,6 +1,5 @@
 package com.Game;
 
-
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -27,7 +26,7 @@ public class Cell {
         rectangle.setHeight(scale);
         rectangle.setWidth(scale);
         this.root = root;
-        rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+        rectangle.setFill(Color.rgb(255, 255, 255, 0.8));
         this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
         root.getChildren().add(rectangle);
     }
@@ -62,42 +61,41 @@ public class Cell {
     void setColorByNumber(int number) {
         switch (number) {
             case 0:
-                rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+                rectangle.setFill(Color.rgb(255, 244, 244, 0.5));
                 break;
             case 2:
-                rectangle.setFill(Color.rgb(232, 255, 100, 0.5));
+                rectangle.setFill(Color.rgb(255, 197, 197, 0.5));
                 break;
             case 4:
-                rectangle.setFill(Color.rgb(232, 220, 50, 0.5));
+                rectangle.setFill(Color.rgb(255, 108, 45, 0.5));
                 break;
             case 8:
-                rectangle.setFill(Color.rgb(232, 200, 44, 0.8));
+                rectangle.setFill(Color.rgb(255, 208, 108, 0.5));
                 break;
             case 16:
-                rectangle.setFill(Color.rgb(232, 170, 44, 0.8));
+                rectangle.setFill(Color.rgb(255, 204, 0, 0.5));
                 break;
             case 32:
-                rectangle.setFill(Color.rgb(180, 120, 44, 0.7));
+                rectangle.setFill(Color.rgb(77, 255, 106, 0.5));
                 break;
             case 64:
-                rectangle.setFill(Color.rgb(180, 100, 44, 0.7));
+                rectangle.setFill(Color.rgb(0, 197, 32, 0.5));
                 break;
             case 128:
-                rectangle.setFill(Color.rgb(180, 80, 44, 0.7));
+                rectangle.setFill(Color.rgb(37, 236, 212, 0.5));
                 break;
             case 256:
-                rectangle.setFill(Color.rgb(180, 60, 44, 0.8));
+                rectangle.setFill(Color.rgb(28, 157, 255, 0.5));
                 break;
             case 512:
-                rectangle.setFill(Color.rgb(180, 30, 44, 0.8));
+                rectangle.setFill(Color.rgb(57, 29, 250, 0.5));
                 break;
             case 1024:
-                rectangle.setFill(Color.rgb(250, 0, 44, 0.8));
+                rectangle.setFill(Color.rgb(172, 85, 255, 0.5));
                 break;
             case 2048:
-                rectangle.setFill(Color.rgb(250,0,0,1));
-
-
+                rectangle.setFill(Color.rgb(129,0,250,0.5));
+                break;
         }
 
     }
