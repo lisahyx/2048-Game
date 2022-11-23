@@ -1,15 +1,20 @@
 package com.StartGame;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainMenu {
     @FXML
@@ -18,9 +23,13 @@ public class MainMenu {
     @FXML
     private Button colorTheme;
 
+    @FXML
+    private Button quit;
+
     public void initialize() {
         startGame.setOnAction(displayGameModes);
         colorTheme.setOnAction(displayThemeChooser);
+        quit.setOnAction(quitGame);
     }
 
     @FXML
@@ -60,6 +69,22 @@ public class MainMenu {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        }
+    };
+
+    @FXML
+    EventHandler<ActionEvent> quitGame = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quit Dialog");
+            alert.setHeaderText("Quit from this page");
+            alert.setContentText("Are you sure?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Platform.exit();
+            }
         }
     };
 };

@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="startPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.StartGame.MainMenu">
    <children>
-      <AnchorPane layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane layoutX="200.0" layoutY="100.0" prefHeight="243.0" prefWidth="200.0">
          <children>
             <Button fx:id="startGame" layoutX="62.0" layoutY="100.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Start" />
             <Text layoutX="12.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2048 GAME">
@@ -16,6 +16,7 @@
                </font>
             </Text>
             <Button fx:id="colorTheme" layoutX="21.0" layoutY="154.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="157.0" text="Choose Main Theme Color" />
+            <Button fx:id="quit" layoutX="62.0" layoutY="205.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Quit" />
          </children>
       </AnchorPane>
    </children>
