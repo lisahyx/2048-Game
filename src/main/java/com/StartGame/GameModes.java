@@ -2,13 +2,18 @@ package com.StartGame;
 
 import com.Game.Game;
 import com.Game.GameScene;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -17,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class GameModes {
@@ -113,12 +119,37 @@ public class GameModes {
 
         // Display the Stage
         primaryStage.show();
+        gameRoot.requestFocus(); // take away focus from quit button
+
+        // quit button
+        Button quitButton = new Button("QUIT");
+        quitButton.setPrefSize(85,35);
+        quitButton.setLayoutX(800);
+        quitButton.setLayoutY(550);
+        quitButton.setTextFill(Color.BLACK);
+        gameRoot.getChildren().add(quitButton);
+
+        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Quit Dialog");
+                alert.setHeaderText("Quit from this page");
+                alert.setContentText("Are you sure?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    gameRoot.getChildren().clear();
+                    primaryStage.close();
+                } else {
+                    gameRoot.requestFocus();
+                }
+            }
+        });
     }
 
     @FXML
     Pane gameModePane;
-
-
 
 
 
