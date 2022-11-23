@@ -46,7 +46,7 @@ public class MainMenu {
     };
 
     @FXML
-    private Pane startPane;
+    Pane startPane;
     @FXML
     private ColorPicker gameTheme;
 
