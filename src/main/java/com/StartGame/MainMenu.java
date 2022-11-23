@@ -7,6 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,11 +22,11 @@ public class MainMenu {
     private Button startGame;
 
     public void initialize() {
-        startGame.setOnAction(displayMainMenu);
+        startGame.setOnAction(displayGameModes);
     }
 
     @FXML
-    EventHandler<ActionEvent> displayMainMenu = new EventHandler<ActionEvent>() {
+    EventHandler<ActionEvent> displayGameModes = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
             Stage stage;
@@ -38,6 +44,16 @@ public class MainMenu {
             stage.show();
         }
     };
+
+    @FXML
+    private Pane startPane;
+    @FXML
+    private ColorPicker gameTheme;
+
+    public void changeColor(ActionEvent event) {
+        Color myColor = gameTheme.getValue();
+        startPane.setBackground(new Background(new BackgroundFill(myColor, null, null)));
+    }
 };
 
 
