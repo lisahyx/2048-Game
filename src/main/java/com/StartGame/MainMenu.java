@@ -5,15 +5,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -37,7 +37,11 @@ public class MainMenu {
     private TextField username;
 
     public void initialize() {
-        startGame.setOnAction(displayGameModes);
+        startGame.setOnAction(e ->{
+            displayGameModes();
+            addUsername();
+        });
+
         Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
         colorTheme.setOnAction(displayThemeChooser);
         quit.setOnAction(quitGame);
@@ -49,26 +53,39 @@ public class MainMenu {
                 username.textProperty().length().lessThan(minLength));
     }
 
-    @FXML
-    EventHandler<ActionEvent> displayGameModes = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            Stage stage;
-            Parent root;
+    //write to file
+    public void addUsername (){
+        String line = username.getText();
 
-            stage = (Stage) startGame.getScene().getWindow();
-            try {
-                startPane.setVisible(false);
-                root = FXMLLoader.load(getClass().getResource("/com/Game/gameModes.fxml"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+        FileWriter file_writer;
+        try {
+            file_writer = new FileWriter("highScoreList.txt", true);
+            BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
+            buffered_Writer.write(line+"\n");
+            buffered_Writer.flush();
+            buffered_Writer.close();
+        } catch (IOException e) {
+            System.out.println("Add line failed!!" + e);
         }
-    };
+    }
+
+    public void displayGameModes () {
+        Stage stage;
+        Parent root;
+
+        stage = (Stage) startGame.getScene().getWindow();
+        try {
+            startPane.setVisible(false);
+            root = FXMLLoader.load(getClass().getResource("/com/Game/gameModes.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     @FXML
     EventHandler<ActionEvent> displayThemeChooser = new EventHandler<ActionEvent>() {
