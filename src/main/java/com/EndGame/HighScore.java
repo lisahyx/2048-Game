@@ -20,7 +20,7 @@ public class HighScore {
     private TextField userScores;
 
     public void initialize() {
-        userScores.setText("username: " + readList() + " score");
+        userScores.setText(readList());
     }
 
     private String readList() {
