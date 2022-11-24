@@ -61,11 +61,11 @@ public class MainMenu {
         try {
             file_writer = new FileWriter("highScoreList.txt", true);
             BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
-            buffered_Writer.write(line+"\n");
+            buffered_Writer.write(line + "\t");
             buffered_Writer.flush();
             buffered_Writer.close();
         } catch (IOException e) {
-            System.out.println("Add line failed!!" + e);
+            System.out.println("Fail to save username" + e);
         }
     }
 
