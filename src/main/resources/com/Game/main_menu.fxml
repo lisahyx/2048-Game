@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="startPane" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.StartGame.MainMenu">
    <children>
-      <AnchorPane layoutX="350.0" layoutY="203.0" prefHeight="243.0" prefWidth="200.0">
+      <VBox fx:id="vbox" alignment="CENTER" layoutX="332.0" layoutY="127.0" prefHeight="369.0" prefWidth="252.0" spacing="25">
          <children>
-            <Button fx:id="startGame" layoutX="62.0" layoutY="100.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Start" />
-            <Text layoutX="12.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2048 GAME">
-               <font>
-                  <Font size="34.0" />
-               </font>
-            </Text>
-            <Button fx:id="colorTheme" layoutX="21.0" layoutY="154.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="157.0" text="Choose Main Theme Color" />
-            <Button fx:id="quit" layoutX="62.0" layoutY="205.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Quit" />
+            <AnchorPane prefHeight="373.0" prefWidth="252.0">
+               <children>
+                  <Text layoutX="37.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2048 GAME">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" layoutX="9.0" layoutY="133.0" prefHeight="62.0" prefWidth="234.0" spacing="10">
+                     <children>
+                        <TextField prefHeight="32.0" prefWidth="142.0" promptText="username" />
+                        <Button fx:id="startGame" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Start" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="colorTheme" layoutX="47.0" layoutY="203.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="157.0" text="Choose Main Theme Color" />
+                  <Button fx:id="quit" layoutX="88.0" layoutY="256.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="Quit" />
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </VBox>
    </children>
 </AnchorPane>

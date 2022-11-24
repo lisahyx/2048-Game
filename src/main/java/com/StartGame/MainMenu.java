@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,8 +32,12 @@ public class MainMenu {
     @FXML
     private Pane startPane;
 
+    @FXML
+    private VBox vbox;
+
     public void initialize() {
         startGame.setOnAction(displayGameModes);
+        Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
         colorTheme.setOnAction(displayThemeChooser);
         quit.setOnAction(quitGame);
     }
