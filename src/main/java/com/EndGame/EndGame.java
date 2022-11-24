@@ -12,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -22,10 +20,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.Game.GameScene.getN;
 
 /**
  * A class for game over screen.
@@ -69,6 +68,12 @@ public class EndGame {
         retryButton.setTextFill(Color.BLACK);
         root.getChildren().add(retryButton);
 
+        // high score button
+        Button highScoreButton = new Button("HIGH SCORE");
+        highScoreButton.setPrefSize(150,35);
+        highScoreButton.setTextFill(Color.BLACK);
+        root.getChildren().add(highScoreButton);
+
         StackPane mainPane;
 
         Stage window = primaryStage;
@@ -85,7 +90,7 @@ public class EndGame {
         hBox.setAlignment(Pos.CENTER);
         hBox.setSpacing(60);
 
-        vBox.getChildren().addAll(text, scoreText, hBox);
+        vBox.getChildren().addAll(text, scoreText, hBox, highScoreButton);
 
         mainPane = new StackPane(vBox);
         mainPane.setPadding(new Insets(30));
@@ -97,6 +102,7 @@ public class EndGame {
             public void handle(ActionEvent actionEvent) {
                 Parent root = null;
                 try {
+                    addScore(score);
                     primaryStage.close();
                     root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
                 } catch (IOException e) {
@@ -121,6 +127,7 @@ public class EndGame {
             public void handle(ActionEvent actionEvent) {
                 GameModes a = new GameModes();
                 try {
+                    addScore(score);
                     primaryStage.close();
                     a.start();
                 } catch (Exception e) {
@@ -139,13 +146,51 @@ public class EndGame {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
+                    addScore(score);
                     root.getChildren().clear();
                     primaryStage.close();
                 }
             }
         });
 
+        highScoreButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Parent root = null;
+                try {
+                    addScore(score);
+                    root = FXMLLoader.load(getClass().getResource("/com/Game/highScoreList.fxml"));
+                    primaryStage.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
+                // Create the Scene
+                Scene highScore = new Scene(root);
+                // Set the Scene to the Stage
+                primaryStage.setScene(highScore);
+                // Display the Stage
+                primaryStage.setTitle("High Score List");
+                // center on screen
+                primaryStage.centerOnScreen();
+                primaryStage.show();
+            }
+        });
+    }
 
+    // write to file
+    public void addScore(long score){
+        Long line = score;
+
+        FileWriter file_writer;
+        try {
+            file_writer = new FileWriter("highScoreList.txt", true);
+            BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
+            buffered_Writer.write(line+"\n");
+            buffered_Writer.flush();
+            buffered_Writer.close();
+        } catch (IOException e) {
+            System.out.println("Add line failed!!" + e);
+        }
     }
 }
