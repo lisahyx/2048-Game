@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -35,11 +33,20 @@ public class MainMenu {
     @FXML
     private VBox vbox;
 
+    @FXML
+    private TextField username;
+
     public void initialize() {
         startGame.setOnAction(displayGameModes);
         Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
         colorTheme.setOnAction(displayThemeChooser);
         quit.setOnAction(quitGame);
+
+        // disable start button if user input is empty
+        int minLength = 1;
+
+        startGame.disableProperty().bind(
+                username.textProperty().length().lessThan(minLength));
     }
 
     @FXML
