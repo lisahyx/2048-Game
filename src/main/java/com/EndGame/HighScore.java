@@ -1,14 +1,12 @@
 package com.EndGame;
 
-import com.Game.Game;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class HighScore {
     private static HighScore singleInstance = null;
@@ -22,7 +20,20 @@ public class HighScore {
     private TextField userScores;
 
     public void initialize() {
-        userScores.setText("username + score");
+        userScores.setText("username: " + readList() + " score");
     }
 
+    private String readList() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("highScoreList.txt")))) {
+            String line = null;
+            String nextLine;
+            while ((nextLine = reader.readLine()) != null) {
+                line = nextLine;
+            }
+            return line;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
