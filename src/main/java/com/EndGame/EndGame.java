@@ -1,6 +1,7 @@
 package com.EndGame;
 
 import com.StartGame.GameModes;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -91,9 +92,9 @@ public class EndGame {
         root.getChildren().add(mainPane);
 
         //main menu button onClick
-        mainMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        mainMenuButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent actionEvent) {
                 Parent root = null;
                 try {
                     primaryStage.close();
@@ -115,9 +116,9 @@ public class EndGame {
         });
 
         //retry button onClick
-        retryButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        retryButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent actionEvent) {
                 GameModes a = new GameModes();
                 try {
                     primaryStage.close();
@@ -128,9 +129,9 @@ public class EndGame {
             }
         });
 
-        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        quitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent actionEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Quit Dialog");
                 alert.setHeaderText("Quit from this page");
