@@ -38,8 +38,8 @@ public class Game extends MoveDirection{
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
-        randomFillNumber(1);
-        randomFillNumber(1);
+        randomFillNumber();
+        randomFillNumber();
 
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
             Platform.runLater(() -> {
@@ -63,6 +63,8 @@ public class Game extends MoveDirection{
 
     void checkEmptyCells (Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         int haveEmptyCell;
+        int i = 0; int j = 0;
+
         haveEmptyCell = Game.this.haveEmptyCell();
         if (haveEmptyCell == -1) {
             if (Game.this.canNotMove()) {
@@ -72,7 +74,8 @@ public class Game extends MoveDirection{
                 root.getChildren().clear();
                 score = 0;
             }
-        } else if(haveEmptyCell == 1)
-            Game.this.randomFillNumber(2);
+        } else if (haveEmptyCell == 1) {
+            Game.this.randomFillNumber();
+        }
     }
 }

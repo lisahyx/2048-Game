@@ -36,7 +36,7 @@ public class GameScene {
         return LENGTH;
     }
 
-    void randomFillNumber(int turn) {
+    void randomFillNumber() {
         Cell[][] emptyCells = new Cell[n][n];
         int a = 0;
         int b = 0;
