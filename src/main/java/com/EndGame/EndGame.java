@@ -96,6 +96,7 @@ public class EndGame {
             public void handle(MouseEvent event) {
                 Parent root = null;
                 try {
+                    primaryStage.close();
                     root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -119,6 +120,7 @@ public class EndGame {
             public void handle(MouseEvent event) {
                 GameModes a = new GameModes();
                 try {
+                    primaryStage.close();
                     a.start();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
