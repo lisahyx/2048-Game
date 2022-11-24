@@ -1,19 +1,12 @@
 package com.Game;
 
-import com.EndGame.EndGame;
-import javafx.application.Platform;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.Random;
 
-class GameScene {
-    private static int HEIGHT = 700;
+public class GameScene {
+    private static int HEIGHT = 620;
     private static int n = 4;
     private static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -22,7 +15,7 @@ class GameScene {
     Group root;
 
 
-    static void setN(int number) {
+    public void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }
@@ -154,10 +147,12 @@ class GameScene {
         return -1;
     }
 
+    long score;
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0) {
             if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
                     && cells[i][des + sign].getNumber() != 0) {
+                score += cells[i][j].getNumber()*2; // increase score
                 return true;
             }
         }
@@ -177,6 +172,7 @@ class GameScene {
         if (des + sign < n && des + sign >= 0)
             if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
                     && cells[des + sign][j].getNumber() != 0) {
+                score += cells[i][j].getNumber()*2; // increase score
                 return true;
             }
         return false;
@@ -186,12 +182,13 @@ class GameScene {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
+            score += cells[i][j].getNumber();
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
     }
 
-    private boolean haveSameNumberNearly(int i, int j) {
+    boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber())
                 return true;
