@@ -11,8 +11,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Game extends MoveDirection{
-    private long score = 0;
-
     public long getScore() {
         return score;
     }
@@ -45,37 +43,22 @@ public class Game extends MoveDirection{
 
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
             Platform.runLater(() -> {
-
                 if (key.getCode() == KeyCode.DOWN) {
                     Game.this.moveDown();
-                    Game.this.sumCellNumbersToScore();
                     checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 } else if (key.getCode() == KeyCode.UP) {
                     Game.this.moveUp();
-                    Game.this.sumCellNumbersToScore();
                     checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 } else if (key.getCode() == KeyCode.LEFT) {
                     Game.this.moveLeft();
-                    Game.this.sumCellNumbersToScore();
                     checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 } else if (key.getCode() == KeyCode.RIGHT) {
                     Game.this.moveRight();
-                    Game.this.sumCellNumbersToScore();
                     checkEmptyCells (root, primaryStage, endGameScene, endGameRoot);
                 }
-
                 scoreText.setText(score + "");
-
             });
         });
-    }
-
-    void sumCellNumbersToScore() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                score += cells[i][j].getNumber();
-            }
-        }
     }
 
     void checkEmptyCells (Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
