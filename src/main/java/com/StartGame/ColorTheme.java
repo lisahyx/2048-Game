@@ -53,19 +53,48 @@ public class ColorTheme {
         return "green";
     }
 
+    int counter;
+
     public void paneBlack() {
         pane.setStyle("-fx-background-color: black");
         colorBlack();
+        white.setDisable(true);
+        green.setDisable(true);
+
+        counter++;
+        if(counter==2) {
+            white.setDisable(false);
+            green.setDisable(false);
+            counter=0;
+        }
     }
 
     public void paneWhite() {
         pane.setStyle("-fx-background-color: white");
         colorWhite();
+        black.setDisable(true);
+        green.setDisable(true);
+
+        counter++;
+        if(counter==2) {
+            black.setDisable(false);
+            green.setDisable(false);
+            counter=0;
+        }
     }
 
     public void paneGreen() {
         pane.setStyle("-fx-background-color: green");
         colorGreen();
+        black.setDisable(true);
+        white.setDisable(true);
+
+        counter++;
+        if(counter==2) {
+            black.setDisable(false);
+            white.setDisable(false);
+            counter=0;
+        }
     }
 
     @FXML
