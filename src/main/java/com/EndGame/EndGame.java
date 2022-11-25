@@ -1,5 +1,6 @@
 package com.EndGame;
 
+import com.StartGame.ColorTheme;
 import com.StartGame.GameModes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -96,6 +97,8 @@ public class EndGame {
         mainPane.setPadding(new Insets(30));
         root.getChildren().add(mainPane);
 
+        ColorTheme thisColor = new ColorTheme();
+
         //main menu button onClick
         mainMenuButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -107,6 +110,14 @@ public class EndGame {
                     root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
+                }
+
+                if(thisColor.getMyColor() == "black") {
+                    root.setStyle("-fx-background-color: black");
+                } else if(thisColor.getMyColor()=="white") {
+                    root.setStyle("-fx-background-color: white");
+                } else if (thisColor.getMyColor() =="green") {
+                    root.setStyle("-fx-background-color: green");
                 }
 
                 // Create the Scene
@@ -163,6 +174,14 @@ public class EndGame {
                     primaryStage.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
+                }
+
+                if(thisColor.getMyColor() == "black") {
+                    root.setStyle("-fx-background-color: black");
+                } else if(thisColor.getMyColor()=="white") {
+                    root.setStyle("-fx-background-color: white");
+                } else if (thisColor.getMyColor() =="green") {
+                    root.setStyle("-fx-background-color: green");
                 }
 
                 // Create the Scene
