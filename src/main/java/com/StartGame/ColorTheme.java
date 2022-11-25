@@ -1,17 +1,17 @@
 package com.StartGame;
 
-import com.Game.Game;
-import com.Game.GameScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 public class ColorTheme {
     @FXML
-    Pane pane;
+    private Pane pane;
+
+    @FXML
+    private Button backButton;
 
     public void changeColor (ActionEvent event) throws Exception {
         String id = ((Node) event.getSource()).getId();
