@@ -61,7 +61,7 @@ public class MainMenu {
         try {
             file_writer = new FileWriter("highScoreList.txt", true);
             BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
-            buffered_Writer.write(line + "\t");
+            buffered_Writer.write(line.toUpperCase() + "\t");
             buffered_Writer.flush();
             buffered_Writer.close();
         } catch (IOException e) {
