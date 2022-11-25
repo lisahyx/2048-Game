@@ -28,6 +28,10 @@ public class ColorTheme {
     @FXML
     private Button green;
 
+    public ColorTheme() {
+        this.myColor=myColor;
+    }
+
     public void initialize() {
         backButton.setOnAction(backToMenu);
         black.setOnAction(e ->{
@@ -85,11 +89,8 @@ public class ColorTheme {
             myColor = null;
         }
     }
-    String myColor;
-    public String checkColor(String myColor) {
-        this.myColor = myColor;
-        return myColor;
-    }
+
+    static String myColor;
 
     public void paneGreen() {
         pane.setStyle("-fx-background-color: green");
