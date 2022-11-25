@@ -69,6 +69,8 @@ public class MainMenu {
         }
     }
 
+    ColorTheme thisColor = new ColorTheme();
+
     public void displayGameModes () {
         Stage stage;
         Parent root;
@@ -80,6 +82,15 @@ public class MainMenu {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        if(thisColor.myColor == "black") {
+            root.setStyle("-fx-background-color: black");
+        } else if(thisColor.myColor=="white") {
+            root.setStyle("-fx-background-color: white");
+        } else if (thisColor.myColor =="green") {
+            root.setStyle("-fx-background-color: green");
+        }
+
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -100,6 +111,15 @@ public class MainMenu {
                 root = FXMLLoader.load(getClass().getResource("/com/Game/colorTheme.fxml"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+
+
+            if(thisColor.myColor == "black") {
+                root.setStyle("-fx-background-color: black");
+            } else if(thisColor.myColor=="white") {
+                root.setStyle("-fx-background-color: white");
+            } else if (thisColor.myColor =="green") {
+                root.setStyle("-fx-background-color: green");
             }
 
             Scene scene = new Scene(root);
