@@ -20,27 +20,52 @@ public class ColorTheme {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Button black;
+
+    @FXML
+    private Button white;
+
+    @FXML
+    private Button green;
+
     public void initialize() {
         backButton.setOnAction(backToMenu);
+        black.setOnAction(e ->{
+            paneBlack();
+        });
+        white.setOnAction(e ->{
+            paneWhite();
+        });
+        green.setOnAction(e ->{
+            paneGreen();
+        });
     }
 
-    public void changeColor (ActionEvent event) throws Exception {
-        String id = ((Node) event.getSource()).getId();
-        GameModes a = new GameModes();
+    public String colorBlack() {
+        return "black";
+    }
 
-        switch(id) {
-            case "black":
-                pane.setStyle("-fx-background-color: black");
-                break;
+    public String colorWhite() {
+        return "white";
+    }
+    public String colorGreen() {
+        return "green";
+    }
 
-            case "white":
-                pane.setStyle("-fx-background-color: white");
-                break;
+    public void paneBlack() {
+        pane.setStyle("-fx-background-color: black");
+        colorBlack();
+    }
 
-            case "green":
-                pane.setStyle("-fx-background-color: green");
-                break;
-        }
+    public void paneWhite() {
+        pane.setStyle("-fx-background-color: white");
+        colorWhite();
+    }
+
+    public void paneGreen() {
+        pane.setStyle("-fx-background-color: green");
+        colorGreen();
     }
 
     @FXML
