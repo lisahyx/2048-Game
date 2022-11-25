@@ -90,6 +90,10 @@ public class ColorTheme {
         }
     }
 
+    public static String getMyColor() {
+        return myColor;
+    }
+
     static String myColor;
 
     public void paneGreen() {
