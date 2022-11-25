@@ -190,7 +190,7 @@ public class EndGame {
             buffered_Writer.flush();
             buffered_Writer.close();
         } catch (IOException e) {
-            System.out.println("Add line failed!!" + e);
+            System.out.println("Fail to save score" + e);
         }
     }
 }
