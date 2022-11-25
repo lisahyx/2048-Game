@@ -2,7 +2,6 @@ package com.StartGame;
 
 import com.Game.Game;
 import com.Game.GameScene;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -94,20 +93,18 @@ public class GameModes {
 
         setGameRoot(gameRoot);
 
-        //gameScene
-        gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-
-        ColorTheme a = new ColorTheme();
-        // gameModePane = a.getPane();
-       // gameModePane.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-
-        ColorTheme n = new ColorTheme();
-        int num;
-        num = n.num;
-        System.out.print(num);
-        if (num == 1) {
+        // change bg color accorfing to user choice
+        ColorTheme thisColor = new ColorTheme();
+        if(thisColor.myColor == "black") {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
+        } else if(thisColor.myColor=="white") {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
+        } else if (thisColor.myColor =="green") {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
         }
+
+        //gameScene
+        //gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
 
         setGameScene(gameScene);
 
