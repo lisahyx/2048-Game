@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -62,10 +61,12 @@ public class ColorTheme {
         green.setDisable(true);
 
         counter++;
+        myColor = "black";
         if(counter==2) {
             white.setDisable(false);
             green.setDisable(false);
             counter=0;
+            myColor=null;
         }
     }
 
@@ -76,11 +77,18 @@ public class ColorTheme {
         green.setDisable(true);
 
         counter++;
+        myColor = "white";
         if(counter==2) {
             black.setDisable(false);
             green.setDisable(false);
             counter=0;
+            myColor = null;
         }
+    }
+    String myColor;
+    public String checkColor(String myColor) {
+        this.myColor = myColor;
+        return myColor;
     }
 
     public void paneGreen() {
@@ -90,10 +98,12 @@ public class ColorTheme {
         white.setDisable(true);
 
         counter++;
+        myColor = "green";
         if(counter==2) {
             black.setDisable(false);
             white.setDisable(false);
             counter=0;
+            myColor = "null";
         }
     }
 
@@ -109,6 +119,14 @@ public class ColorTheme {
                 root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+
+            if(myColor == "black") {
+                root.setStyle("-fx-background-color: black");
+            } else if(myColor=="white") {
+                root.setStyle("-fx-background-color: white");
+            } else if (myColor =="green") {
+                root.setStyle("-fx-background-color: green");
             }
 
             Scene scene = new Scene(root);
