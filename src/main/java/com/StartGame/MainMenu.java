@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 public class MainMenu {
@@ -89,7 +90,6 @@ public class MainMenu {
             case "green" -> root.setStyle("-fx-background-color: green");
         }
 
-
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -111,11 +111,12 @@ public class MainMenu {
                 throw new RuntimeException(e);
             }
 
-
-            switch (ColorTheme.myColor) {
-                case "black" -> root.setStyle("-fx-background-color: black");
-                case "white" -> root.setStyle("-fx-background-color: white");
-                case "green" -> root.setStyle("-fx-background-color: green");
+            if(Objects.equals(ColorTheme.myColor, "black")) {
+                root.setStyle("-fx-background-color: black");
+            } else if(Objects.equals(ColorTheme.myColor, "white")) {
+                root.setStyle("-fx-background-color: white");
+            } else if (Objects.equals(ColorTheme.myColor, "green")) {
+                root.setStyle("-fx-background-color: green");
             }
 
             Scene scene = new Scene(root);
@@ -136,6 +137,5 @@ public class MainMenu {
             Platform.exit();
         }
     };
-}
-
+};
 
