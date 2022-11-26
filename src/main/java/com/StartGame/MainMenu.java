@@ -83,12 +83,10 @@ public class MainMenu {
             throw new RuntimeException(e);
         }
 
-        if(thisColor.myColor == "black") {
-            root.setStyle("-fx-background-color: black");
-        } else if(thisColor.myColor=="white") {
-            root.setStyle("-fx-background-color: white");
-        } else if (thisColor.myColor =="green") {
-            root.setStyle("-fx-background-color: green");
+        switch (ColorTheme.myColor) {
+            case "black" -> root.setStyle("-fx-background-color: black");
+            case "white" -> root.setStyle("-fx-background-color: white");
+            case "green" -> root.setStyle("-fx-background-color: green");
         }
 
 
@@ -99,7 +97,7 @@ public class MainMenu {
     }
 
     @FXML
-    EventHandler<ActionEvent> displayThemeChooser = new EventHandler<ActionEvent>() {
+    EventHandler<ActionEvent> displayThemeChooser = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
             Stage stage;
@@ -114,12 +112,10 @@ public class MainMenu {
             }
 
 
-            if(thisColor.myColor == "black") {
-                root.setStyle("-fx-background-color: black");
-            } else if(thisColor.myColor=="white") {
-                root.setStyle("-fx-background-color: white");
-            } else if (thisColor.myColor =="green") {
-                root.setStyle("-fx-background-color: green");
+            switch (ColorTheme.myColor) {
+                case "black" -> root.setStyle("-fx-background-color: black");
+                case "white" -> root.setStyle("-fx-background-color: white");
+                case "green" -> root.setStyle("-fx-background-color: green");
             }
 
             Scene scene = new Scene(root);
@@ -129,20 +125,17 @@ public class MainMenu {
     };
 
     @FXML
-    EventHandler<ActionEvent> quitGame = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Quit Dialog");
-            alert.setHeaderText("Quit from this page");
-            alert.setContentText("Are you sure?");
+    EventHandler<ActionEvent> quitGame = actionEvent -> {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Dialog");
+        alert.setHeaderText("Quit from this page");
+        alert.setContentText("Are you sure?");
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Platform.exit();
-            }
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            Platform.exit();
         }
     };
-};
+}
 
 
