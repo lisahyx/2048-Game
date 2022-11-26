@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -110,10 +111,12 @@ public class EndGame {
                     throw new RuntimeException(e);
                 }
 
-                switch (ColorTheme.getMyColor()) {
-                    case "black" -> root.setStyle("-fx-background-color: black");
-                    case "white" -> root.setStyle("-fx-background-color: white");
-                    case "green" -> root.setStyle("-fx-background-color: green");
+                if(Objects.equals(ColorTheme.getMyColor(), "black")) {
+                    root.setStyle("-fx-background-color: black");
+                } else if(Objects.equals(ColorTheme.getMyColor(), "white")) {
+                    root.setStyle("-fx-background-color: white");
+                } else if (Objects.equals(ColorTheme.getMyColor(), "green")) {
+                    root.setStyle("-fx-background-color: green");
                 }
 
                 // Create the Scene
@@ -166,10 +169,12 @@ public class EndGame {
                     throw new RuntimeException(e);
                 }
 
-                switch (ColorTheme.getMyColor()) {
-                    case "black" -> root.setStyle("-fx-background-color: black");
-                    case "white" -> root.setStyle("-fx-background-color: white");
-                    case "green" -> root.setStyle("-fx-background-color: green");
+                if(Objects.equals(ColorTheme.getMyColor(), "black")) {
+                    root.setStyle("-fx-background-color: black");
+                } else if(Objects.equals(ColorTheme.getMyColor(), "white")) {
+                    root.setStyle("-fx-background-color: white");
+                } else if (Objects.equals(ColorTheme.getMyColor(), "green")) {
+                    root.setStyle("-fx-background-color: green");
                 }
 
                 // Create the Scene

@@ -84,10 +84,12 @@ public class MainMenu {
             throw new RuntimeException(e);
         }
 
-        switch (ColorTheme.myColor) {
-            case "black" -> root.setStyle("-fx-background-color: black");
-            case "white" -> root.setStyle("-fx-background-color: white");
-            case "green" -> root.setStyle("-fx-background-color: green");
+        if(Objects.equals(ColorTheme.myColor, "black")) {
+            root.setStyle("-fx-background-color: black");
+        } else if(Objects.equals(ColorTheme.myColor, "white")) {
+            root.setStyle("-fx-background-color: white");
+        } else if (Objects.equals(ColorTheme.myColor, "green")) {
+            root.setStyle("-fx-background-color: green");
         }
 
         Scene scene = new Scene(root);

@@ -21,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -91,13 +93,15 @@ public class GameModes {
         setGameRoot(gameRoot);
 
         // change bg color according to user choice
-        switch (ColorTheme.myColor) {
-            case "black" -> gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
-            case "white" -> gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
-            case "green" -> gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
+        if(Objects.equals(ColorTheme.myColor, "black")) {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
+        } else if(Objects.equals(ColorTheme.myColor, "white")) {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
+        } else if (Objects.equals(ColorTheme.myColor, "green")) {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
+        } else {
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         }
-
-        //gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
 
         setGameScene(gameScene);
 
