@@ -117,6 +117,8 @@ public class EndGame {
                     root.setStyle("-fx-background-color: white");
                 } else if (Objects.equals(ColorTheme.getMyColor(), "green")) {
                     root.setStyle("-fx-background-color: green");
+                } else {
+                    root.setStyle("-fx-background-color: rgb(189, 177, 92)");
                 }
 
                 // Create the Scene
@@ -175,6 +177,8 @@ public class EndGame {
                     root.setStyle("-fx-background-color: white");
                 } else if (Objects.equals(ColorTheme.getMyColor(), "green")) {
                     root.setStyle("-fx-background-color: green");
+                } else {
+                    root.setStyle("-fx-background-color: rgb(189, 177, 92)");
                 }
 
                 // Create the Scene

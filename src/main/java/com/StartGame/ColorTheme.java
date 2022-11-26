@@ -127,6 +127,8 @@ public class ColorTheme {
                 root.setStyle("-fx-background-color: white");
             } else if (myColor =="green") {
                 root.setStyle("-fx-background-color: green");
+            } else {
+                root.setStyle("-fx-background-color: rgb(189, 177, 92)");
             }
 
             Scene scene = new Scene(root);

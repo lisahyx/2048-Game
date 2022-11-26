@@ -20,6 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         // display main menu
         Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
+        root.setStyle("-fx-background-color: rgb(189, 177, 92)");
 
         // Create the Scene
         Scene mainMenu = new Scene(root);

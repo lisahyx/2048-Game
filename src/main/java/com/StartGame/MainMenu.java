@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
@@ -90,12 +91,13 @@ public class MainMenu {
             root.setStyle("-fx-background-color: white");
         } else if (Objects.equals(ColorTheme.myColor, "green")) {
             root.setStyle("-fx-background-color: green");
+        } else {
+            root.setStyle("-fx-background-color: rgb(189, 177, 92)");
         }
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
@@ -119,6 +121,8 @@ public class MainMenu {
                 root.setStyle("-fx-background-color: white");
             } else if (Objects.equals(ColorTheme.myColor, "green")) {
                 root.setStyle("-fx-background-color: green");
+            } else {
+                root.setStyle("-fx-background-color: rgb(189, 177, 92)");
             }
 
             Scene scene = new Scene(root);
