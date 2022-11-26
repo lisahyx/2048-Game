@@ -29,25 +29,22 @@ public class GameModes {
         String id = ((Node) event.getSource()).getId();
         GameScene a = new GameScene();
 
-        switch(id) {
-            case "4x4":
+        switch (id) {
+            case "4x4" -> {
+                a.setN(4);
                 ((Node) event.getSource()).getScene().getWindow().hide();
                 start();
-                break;
-
-            case "5x5":
+            }
+            case "5x5" -> {
                 a.setN(5);
-
                 ((Node) event.getSource()).getScene().getWindow().hide();
                 start();
-                break;
-
-            case "6x6":
+            }
+            case "6x6" -> {
                 a.setN(6);
-
                 ((Node) event.getSource()).getScene().getWindow().hide();
                 start();
-                break;
+            }
         }
     }
 
@@ -56,7 +53,7 @@ public class GameModes {
     private Group gameRoot = new Group();
     private Scene gameScene;
 
-    private static Scanner input= new Scanner(System.in);
+    private static final Scanner input= new Scanner(System.in);
 
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
@@ -66,7 +63,7 @@ public class GameModes {
         this.gameRoot = gameRoot;
     }
 
-    public void start () throws Exception{
+    public void start () {
         Group menuRoot = new Group();
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
         Group accountRoot = new Group();
@@ -93,17 +90,13 @@ public class GameModes {
 
         setGameRoot(gameRoot);
 
-        // change bg color accorfing to user choice
-        ColorTheme thisColor = new ColorTheme();
-        if(thisColor.myColor == "black") {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
-        } else if(thisColor.myColor=="white") {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
-        } else if (thisColor.myColor =="green") {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
+        // change bg color according to user choice
+        switch (ColorTheme.myColor) {
+            case "black" -> gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
+            case "white" -> gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
+            case "green" -> gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
         }
 
-        //gameScene
         //gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
 
         setGameScene(gameScene);
@@ -126,30 +119,19 @@ public class GameModes {
         quitButton.setTextFill(Color.BLACK);
         gameRoot.getChildren().add(quitButton);
 
-        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Quit Dialog");
-                alert.setHeaderText("Quit from this page");
-                alert.setContentText("Are you sure?");
+        quitButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quit Dialog");
+            alert.setHeaderText("Quit from this page");
+            alert.setContentText("Are you sure?");
 
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    gameRoot.getChildren().clear();
-                    primaryStage.close();
-                } else {
-                    gameRoot.requestFocus();
-                }
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                gameRoot.getChildren().clear();
+                primaryStage.close();
+            } else {
+                gameRoot.requestFocus();
             }
         });
     }
-
-    @FXML
-    Pane gameModePane;
-
-
-
-
-
 }
