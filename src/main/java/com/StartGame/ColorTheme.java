@@ -45,43 +45,41 @@ public class ColorTheme {
         });
     }
 
-    public String colorBlack() {
-        return "black";
-    }
-
-    public String colorWhite() {
-        return "white";
-    }
-    public String colorGreen() {
-        return "green";
-    }
-
     int counter;
+    static String myColor;
+
+    public static String getMyColor() {
+        return myColor;
+    }
 
     public void paneBlack() {
-        pane.setStyle("-fx-background-color: black");
-        colorBlack();
+        pane.setStyle("-fx-background-color: black"); // set bg color
+
+        //disable other buttons
         white.setDisable(true);
         green.setDisable(true);
 
-        counter++;
-        myColor = "black";
+        counter++; // increase when button is clicked once
+        myColor = "black"; // indicate which bg color is chosen
+
+        // enable other buttons when button is clicked twice
         if(counter==2) {
             white.setDisable(false);
             green.setDisable(false);
-            counter=0;
-            myColor=null;
+            counter=0; // reset counter
+            myColor=null; // reset variable
         }
     }
 
     public void paneWhite() {
         pane.setStyle("-fx-background-color: white");
-        colorWhite();
+
         black.setDisable(true);
         green.setDisable(true);
 
         counter++;
         myColor = "white";
+
         if(counter==2) {
             black.setDisable(false);
             green.setDisable(false);
@@ -90,20 +88,16 @@ public class ColorTheme {
         }
     }
 
-    public static String getMyColor() {
-        return myColor;
-    }
-
-    static String myColor;
 
     public void paneGreen() {
         pane.setStyle("-fx-background-color: green");
-        colorGreen();
+
         black.setDisable(true);
         white.setDisable(true);
 
         counter++;
         myColor = "green";
+
         if(counter==2) {
             black.setDisable(false);
             white.setDisable(false);
@@ -126,6 +120,7 @@ public class ColorTheme {
                 throw new RuntimeException(e);
             }
 
+            // link bg color across stages
             if(myColor == "black") {
                 root.setStyle("-fx-background-color: black");
             } else if(myColor=="white") {
