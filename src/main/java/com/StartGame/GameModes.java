@@ -131,6 +131,11 @@ public class GameModes {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
+                try {
+                    deleteLastRecord();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 gameRoot.getChildren().clear();
                 primaryStage.close();
             } else {
@@ -139,4 +144,17 @@ public class GameModes {
         });
     }
 
+    //delete last line from file (remove username)
+    private void deleteLastRecord() throws IOException {
+        RandomAccessFile f = new RandomAccessFile("highScoreList.txt", "rw");
+        long length = f.length() - 1;
+        byte b;
+        do {
+            length -= 1;
+            f.seek(length);
+            b = f.readByte();
+        } while (b != 10);
+        f.setLength(length + 1);
+        f.close();
+    }
 }
