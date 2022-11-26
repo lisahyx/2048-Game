@@ -96,8 +96,6 @@ public class EndGame {
         mainPane.setPadding(new Insets(30));
         root.getChildren().add(mainPane);
 
-        ColorTheme thisColor = new ColorTheme();
-
         //main menu button onClick
         mainMenuButton.setOnAction(new EventHandler<>() {
             @Override
@@ -107,18 +105,9 @@ public class EndGame {
                     addScore(score);
                     primaryStage.close();
                     root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
+                    ColorTheme.fxmlColor(root);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
-                }
-
-                if(Objects.equals(ColorTheme.getMyColor(), "black")) {
-                    root.setStyle("-fx-background-color: black");
-                } else if(Objects.equals(ColorTheme.getMyColor(), "white")) {
-                    root.setStyle("-fx-background-color: white");
-                } else if (Objects.equals(ColorTheme.getMyColor(), "green")) {
-                    root.setStyle("-fx-background-color: green");
-                } else {
-                    root.setStyle("-fx-background-color: rgb(189, 177, 92)");
                 }
 
                 // Create the Scene
@@ -166,19 +155,10 @@ public class EndGame {
                 try {
                     addScore(score);
                     root = FXMLLoader.load(getClass().getResource("/com/Game/highScoreList.fxml"));
+                    ColorTheme.fxmlColor(root);
                     primaryStage.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
-                }
-
-                if(Objects.equals(ColorTheme.getMyColor(), "black")) {
-                    root.setStyle("-fx-background-color: black");
-                } else if(Objects.equals(ColorTheme.getMyColor(), "white")) {
-                    root.setStyle("-fx-background-color: white");
-                } else if (Objects.equals(ColorTheme.getMyColor(), "green")) {
-                    root.setStyle("-fx-background-color: green");
-                } else {
-                    root.setStyle("-fx-background-color: rgb(189, 177, 92)");
                 }
 
                 // Create the Scene

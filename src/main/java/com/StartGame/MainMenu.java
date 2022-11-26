@@ -71,8 +71,6 @@ public class MainMenu {
         }
     }
 
-    ColorTheme thisColor = new ColorTheme();
-
     public void displayGameModes () {
         Stage stage;
         Parent root;
@@ -81,18 +79,9 @@ public class MainMenu {
         try {
             startPane.setVisible(false);
             root = FXMLLoader.load(getClass().getResource("/com/Game/gameModes.fxml"));
+            ColorTheme.fxmlColor(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-
-        if(Objects.equals(ColorTheme.myColor, "black")) {
-            root.setStyle("-fx-background-color: black");
-        } else if(Objects.equals(ColorTheme.myColor, "white")) {
-            root.setStyle("-fx-background-color: white");
-        } else if (Objects.equals(ColorTheme.myColor, "green")) {
-            root.setStyle("-fx-background-color: green");
-        } else {
-            root.setStyle("-fx-background-color: rgb(189, 177, 92)");
         }
 
         Scene scene = new Scene(root);
@@ -111,18 +100,9 @@ public class MainMenu {
             try {
                 startPane.setVisible(false);
                 root = FXMLLoader.load(getClass().getResource("/com/Game/colorTheme.fxml"));
+                ColorTheme.fxmlColor(root); // set bg color
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
-
-            if(Objects.equals(ColorTheme.myColor, "black")) {
-                root.setStyle("-fx-background-color: black");
-            } else if(Objects.equals(ColorTheme.myColor, "white")) {
-                root.setStyle("-fx-background-color: white");
-            } else if (Objects.equals(ColorTheme.myColor, "green")) {
-                root.setStyle("-fx-background-color: green");
-            } else {
-                root.setStyle("-fx-background-color: rgb(189, 177, 92)");
             }
 
             Scene scene = new Scene(root);

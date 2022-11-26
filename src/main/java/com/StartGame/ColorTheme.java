@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ColorTheme {
     @FXML
@@ -103,6 +104,18 @@ public class ColorTheme {
             white.setDisable(false);
             counter=0;
             myColor = "null";
+        }
+    }
+
+    public static void fxmlColor(Parent root) {
+        if(Objects.equals(ColorTheme.myColor, "black")) {
+            root.setStyle("-fx-background-color: black");
+        } else if(Objects.equals(ColorTheme.myColor, "white")) {
+            root.setStyle("-fx-background-color: white");
+        } else if (Objects.equals(ColorTheme.myColor, "green")) {
+            root.setStyle("-fx-background-color: green");
+        } else {
+            root.setStyle("-fx-background-color: rgb(189, 177, 92)");
         }
     }
 
