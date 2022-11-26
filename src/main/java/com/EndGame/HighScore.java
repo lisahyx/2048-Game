@@ -6,10 +6,7 @@ import javafx.scene.control.TextArea;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class HighScore {
@@ -26,18 +23,32 @@ public class HighScore {
 
     public void initialize() throws IOException {
         userScoreList.setText(sortLines());
+        //userScoreList.setText(readList());
     }
 
     // read last line of file
     private String readList() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("highScoreList.txt")))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("highScoreList.txt"))) {
             String line = null;
             String nextLine;
 
+            String sorted = null;
             while ((nextLine = reader.readLine()) != null) {
                 line = nextLine;
+
+                String[] tokens = line.split("\t");
+                if (tokens.length != 2) {
+                    throw new IllegalArgumentException();
+                }
+                String command = tokens[0];
+                String person = tokens[1];
+
+                SortedSet<String> set = new TreeSet<String>();
+                set.addAll(Arrays.asList(person));
+                sorted = set.stream().collect(Collectors.joining("\n"));
             }
-            return line;
+            return sorted;
+            //return line; //last line
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,11 +56,15 @@ public class HighScore {
     }
 
     private String sortLines() throws IOException {
-        String sort = new String(Files.readAllBytes(Paths.get("highScoreList.txt")));
-        String[] wordy = sort.split("\n");
-        SortedSet<String> set = new TreeSet<String>();
-        set.addAll(Arrays.asList(wordy));
-        String sorted = set.stream().collect(Collectors.joining("\n"));
+        String allContent = new String(Files.readAllBytes(Paths.get("highScoreList.txt")));
+
+        ArrayList<String> str = new ArrayList<>(Arrays.asList(allContent.split("\n")));
+        // descending
+        str.sort((o1, o2) -> Integer.compare(
+                Integer.parseInt(o2.substring(o2.indexOf("\t") + 1)),
+                Integer.parseInt(o1.substring(o1.indexOf("\t") + 1))));
+
+        String sorted = str.stream().collect(Collectors.joining("\n")); //separate with new line
         return sorted;
     }
 }
