@@ -77,14 +77,12 @@ public class EndGame {
 
         StackPane mainPane;
 
-        Stage window = primaryStage;
-
         VBox vBox = new VBox(5);
+        VBox.setMargin(text, new Insets(-80, 0, 0, 0));
+        VBox.setMargin(scoreText, new Insets(0, 0, 120, 0));
         vBox.setAlignment(Pos. CENTER);
-        vBox.setMargin(text, new Insets(-80, 0, 0, 0));
-        vBox.setMargin(scoreText, new Insets(0, 0, 120, 0));
-        vBox.prefWidthProperty().bind(window.widthProperty().multiply(0.90));
-        vBox.prefHeightProperty().bind(window.heightProperty());
+        vBox.prefWidthProperty().bind(primaryStage.widthProperty().multiply(0.90));
+        vBox.prefHeightProperty().bind(primaryStage.heightProperty());
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(mainMenuButton, retryButton, quitButton);
@@ -100,10 +98,10 @@ public class EndGame {
         ColorTheme thisColor = new ColorTheme();
 
         //main menu button onClick
-        mainMenuButton.setOnAction(new EventHandler<ActionEvent>() {
+        mainMenuButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Parent root = null;
+                Parent root;
                 try {
                     addScore(score);
                     primaryStage.close();
@@ -112,12 +110,10 @@ public class EndGame {
                     throw new RuntimeException(e);
                 }
 
-                if(thisColor.getMyColor() == "black") {
-                    root.setStyle("-fx-background-color: black");
-                } else if(thisColor.getMyColor()=="white") {
-                    root.setStyle("-fx-background-color: white");
-                } else if (thisColor.getMyColor() =="green") {
-                    root.setStyle("-fx-background-color: green");
+                switch (ColorTheme.getMyColor()) {
+                    case "black" -> root.setStyle("-fx-background-color: black");
+                    case "white" -> root.setStyle("-fx-background-color: white");
+                    case "green" -> root.setStyle("-fx-background-color: green");
                 }
 
                 // Create the Scene
@@ -133,41 +129,35 @@ public class EndGame {
         });
 
         //retry button onClick
-        retryButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                GameModes a = new GameModes();
-                try {
-                    addScore(score);
-                    primaryStage.close();
-                    a.start();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+        retryButton.setOnAction(actionEvent -> {
+            GameModes a = new GameModes();
+            try {
+                addScore(score);
+                primaryStage.close();
+                a.start();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         });
 
-        quitButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Quit Dialog");
-                alert.setHeaderText("Quit from this page");
-                alert.setContentText("Are you sure?");
+        quitButton.setOnAction(actionEvent -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quit Dialog");
+            alert.setHeaderText("Quit from this page");
+            alert.setContentText("Are you sure?");
 
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    addScore(score);
-                    root.getChildren().clear();
-                    primaryStage.close();
-                }
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                addScore(score);
+                root.getChildren().clear();
+                primaryStage.close();
             }
         });
 
-        highScoreButton.setOnAction(new EventHandler<ActionEvent>() {
+        highScoreButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Parent root = null;
+                Parent root;
                 try {
                     addScore(score);
                     root = FXMLLoader.load(getClass().getResource("/com/Game/highScoreList.fxml"));
@@ -176,12 +166,10 @@ public class EndGame {
                     throw new RuntimeException(e);
                 }
 
-                if(thisColor.getMyColor() == "black") {
-                    root.setStyle("-fx-background-color: black");
-                } else if(thisColor.getMyColor()=="white") {
-                    root.setStyle("-fx-background-color: white");
-                } else if (thisColor.getMyColor() =="green") {
-                    root.setStyle("-fx-background-color: green");
+                switch (ColorTheme.getMyColor()) {
+                    case "black" -> root.setStyle("-fx-background-color: black");
+                    case "white" -> root.setStyle("-fx-background-color: white");
+                    case "green" -> root.setStyle("-fx-background-color: green");
                 }
 
                 // Create the Scene
