@@ -2,6 +2,7 @@ package com.EndGame;
 
 import com.StartGame.ColorTheme;
 import com.StartGame.GameModes;
+import com.User.Account;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -36,11 +37,14 @@ public class EndGame {
     private EndGame(){
 
     }
+
     public static EndGame getInstance(){
         if(singleInstance == null)
             singleInstance= new EndGame();
         return singleInstance;
     }
+
+    Account userScore = new Account();
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
         Text text = new Text("GAME OVER");
@@ -102,7 +106,7 @@ public class EndGame {
             public void handle(ActionEvent actionEvent) {
                 Parent root;
                 try {
-                    addScore(score);
+                    userScore.addScore(score);
                     primaryStage.close();
                     root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
                     ColorTheme.fxmlColor(root);
@@ -126,7 +130,7 @@ public class EndGame {
         retryButton.setOnAction(actionEvent -> {
             GameModes a = new GameModes();
             try {
-                addScore(score);
+                userScore.addScore(score);
                 primaryStage.close();
                 a.start();
             } catch (Exception e) {
@@ -142,7 +146,7 @@ public class EndGame {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                addScore(score);
+                userScore.addScore(score);
                 root.getChildren().clear();
                 primaryStage.close();
             }
@@ -153,7 +157,7 @@ public class EndGame {
             public void handle(ActionEvent actionEvent) {
                 Parent root;
                 try {
-                    addScore(score);
+                    userScore.addScore(score);
                     root = FXMLLoader.load(getClass().getResource("/com/Game/highScoreList.fxml"));
                     ColorTheme.fxmlColor(root);
                     primaryStage.close();
@@ -172,21 +176,5 @@ public class EndGame {
                 primaryStage.show();
             }
         });
-    }
-
-    // write to file
-    public void addScore(long score){
-        Long line = score;
-
-        FileWriter file_writer;
-        try {
-            file_writer = new FileWriter("highScoreList.txt", true);
-            BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
-            buffered_Writer.write(line+"\n");
-            buffered_Writer.flush();
-            buffered_Writer.close();
-        } catch (IOException e) {
-            System.out.println("Fail to save score" + e);
-        }
     }
 }

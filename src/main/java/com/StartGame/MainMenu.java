@@ -1,5 +1,6 @@
 package com.StartGame;
 
+import com.User.Account;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,11 +14,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.Optional;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class MainMenu {
     @FXML
@@ -41,7 +41,9 @@ public class MainMenu {
     public void initialize() {
         startGame.setOnAction(e ->{
             displayGameModes();
-            addUsername();
+
+            Account account = new Account();
+            account.addUsername(username.getText());
         });
 
         Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
@@ -53,22 +55,6 @@ public class MainMenu {
 
         startGame.disableProperty().bind(
                 username.textProperty().length().lessThan(minLength));
-    }
-
-    //write to file
-    public void addUsername (){
-        String line = username.getText();
-
-        FileWriter file_writer;
-        try {
-            file_writer = new FileWriter("highScoreList.txt", true);
-            BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
-            buffered_Writer.write(line.toUpperCase() + "\t");
-            buffered_Writer.flush();
-            buffered_Writer.close();
-        } catch (IOException e) {
-            System.out.println("Fail to save username" + e);
-        }
     }
 
     public void displayGameModes () {
