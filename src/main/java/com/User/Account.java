@@ -1,12 +1,12 @@
 package com.User;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Account implements Comparable<Account> {
     private long score = 0;
+
     private String userName;
     private static ArrayList<Account> accounts = new ArrayList<>();
 
@@ -23,7 +23,11 @@ public class Account implements Comparable<Account> {
         return score;
     }
 
-    private String getUserName() {
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
         return userName;
     }
 
@@ -39,7 +43,6 @@ public class Account implements Comparable<Account> {
     public static void makeNewAccount(String userName){
         Account account = new Account();
         accounts.add(account);
-        //return account;
     }
 
     public static Account printAccount() {
@@ -47,53 +50,38 @@ public class Account implements Comparable<Account> {
         return null;
     }
 
-    public void addUsername (String username){
-        FileWriter file_writer;
-        try {
-            file_writer = new FileWriter("highScoreList.txt", true);
-            BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
-
-            buffered_Writer.write(username.toUpperCase() + "\t");
-            buffered_Writer.flush();
-            buffered_Writer.close();
-        } catch (IOException e) {
-            System.out.println("Fail to save username" + e);
-        }
-    }
-
-    public void findDuplicate() throws IOException {
-        String allContent = new String(Files.readAllBytes(Paths.get("highScoreList.txt")));
+    public void addUsername(String username) throws IOException {
+        File oldFile = new File("C:\\Users\\lisah\\IdeaProjects\\COMP2042_CW_hfylh2\\highScoreList.txt");
+        File newFile = new File("newHighScoreList.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader("highScoreList.txt"));
+
         String line = null;
         String nextLine;
+        String lastline = null;
+
+        FileWriter file_writer;
+        file_writer = new FileWriter(newFile, true);
+        BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
 
         while ((nextLine = reader.readLine()) != null) {
             line = nextLine;
-            System.out.print(line + "\n");
-            if ((userName).equals(line)) {
-                System.out.print("NOT UNIQUE");
+
+            if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf("\t")))) {
+                lastline = nextLine;
+            }
+            else {
+                buffered_Writer.write(line + "\n");
             }
         }
-        String[] names = allContent.split("\t");
+        buffered_Writer.write(lastline);
+        buffered_Writer.flush();
+        buffered_Writer.close();
+        file_writer.close();
+        reader.close();
 
-
-        /*
-        //allContent.split("\t"); //get username only
-        String[] names = allContent.split("\t");
-        String str = allContent.split("\t")[0];
-        System.out.print(str);
-        int i =0;
-        for(String s:names)
-        {
-            System.out.println(s);
-            i++;
-        }
-
-        if(username.getText() == allContent) {
-            System.out.print("NOT UNIQUE");
-        }
-        */
+        oldFile.delete();
+        newFile.renameTo(oldFile);
     }
 
     // save score to file
