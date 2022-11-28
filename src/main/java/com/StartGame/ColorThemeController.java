@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ColorTheme {
+public class ColorThemeController {
     @FXML
     private Pane pane;
 
@@ -104,11 +104,11 @@ public class ColorTheme {
     }
 
     public static void fxmlColor(Parent root) {
-        if(Objects.equals(ColorTheme.myColor, "black")) {
+        if(Objects.equals(ColorThemeController.myColor, "black")) {
             root.setStyle("-fx-background-color: black");
-        } else if(Objects.equals(ColorTheme.myColor, "white")) {
+        } else if(Objects.equals(ColorThemeController.myColor, "white")) {
             root.setStyle("-fx-background-color: white");
-        } else if (Objects.equals(ColorTheme.myColor, "green")) {
+        } else if (Objects.equals(ColorThemeController.myColor, "green")) {
             root.setStyle("-fx-background-color: green");
         } else {
             root.setStyle("-fx-background-color: rgb(189, 177, 92)");

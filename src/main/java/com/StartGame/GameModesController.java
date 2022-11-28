@@ -3,8 +3,6 @@ package com.StartGame;
 import com.Game.Game;
 import com.Game.GameScene;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -12,11 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -26,7 +22,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class GameModes {
+public class GameModesController {
     public void buttonListener (ActionEvent event) throws Exception {
         String id = ((Node) event.getSource()).getId();
         GameScene a = new GameScene();
@@ -93,11 +89,11 @@ public class GameModes {
         setGameRoot(gameRoot);
 
         // change bg color according to user choice
-        if(Objects.equals(ColorTheme.myColor, "black")) {
+        if(Objects.equals(ColorThemeController.myColor, "black")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
-        } else if(Objects.equals(ColorTheme.myColor, "white")) {
+        } else if(Objects.equals(ColorThemeController.myColor, "white")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
-        } else if (Objects.equals(ColorTheme.myColor, "green")) {
+        } else if (Objects.equals(ColorThemeController.myColor, "green")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
         } else {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
@@ -144,7 +140,7 @@ public class GameModes {
         });
     }
 
-    //delete last line from file (remove username)
+    //delete last line from file (remove last saved username)
     private void deleteLastRecord() throws IOException {
         RandomAccessFile f = new RandomAccessFile("highScoreList.txt", "rw");
         long length = f.length() - 1;

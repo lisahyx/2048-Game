@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.*;
 
-public class MainMenu {
+public class MainMenuController {
     @FXML
     private Button startGame;
 
@@ -65,8 +65,8 @@ public class MainMenu {
         stage = (Stage) startGame.getScene().getWindow();
         try {
             startPane.setVisible(false);
-            root = FXMLLoader.load(getClass().getResource("/com/Game/gameModes.fxml"));
-            ColorTheme.fxmlColor(root);
+            root = FXMLLoader.load(getClass().getResource("/com/Game/game_modes.fxml"));
+            ColorThemeController.fxmlColor(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -86,8 +86,8 @@ public class MainMenu {
             stage = (Stage) startGame.getScene().getWindow();
             try {
                 startPane.setVisible(false);
-                root = FXMLLoader.load(getClass().getResource("/com/Game/colorTheme.fxml"));
-                ColorTheme.fxmlColor(root); // set bg color
+                root = FXMLLoader.load(getClass().getResource("/com/Game/color_theme.fxml"));
+                ColorThemeController.fxmlColor(root); // set bg color
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
