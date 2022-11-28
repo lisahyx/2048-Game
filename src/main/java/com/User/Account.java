@@ -52,13 +52,14 @@ public class Account implements Comparable<Account> {
 
     public void addUsername(String username) throws IOException {
         File oldFile = new File("C:\\Users\\lisah\\IdeaProjects\\COMP2042_CW_hfylh2\\highScoreList.txt");
+        oldFile.createNewFile(); // create file if file does not exist
         File newFile = new File("newHighScoreList.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader("highScoreList.txt"));
 
         String line = null;
         String nextLine;
-        String lastline = null;
+        String lastLine = null;
 
         FileWriter file_writer;
         file_writer = new FileWriter(newFile, true);
@@ -67,14 +68,27 @@ public class Account implements Comparable<Account> {
         while ((nextLine = reader.readLine()) != null) {
             line = nextLine;
 
-            if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf("\t")))) {
-                lastline = nextLine;
-            }
-            else {
+            if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf(" ")))) {
+                lastLine = nextLine;
+            } else {
                 buffered_Writer.write(line + "\n");
+                lastLine = username.toUpperCase() + " ";
             }
         }
-        buffered_Writer.write(lastline);
+        if ((nextLine = reader.readLine()) == null){
+            lastLine = username.toUpperCase() + " ";
+            buffered_Writer.write(lastLine);
+            buffered_Writer.flush();
+            buffered_Writer.close();
+            file_writer.close();
+            reader.close();
+
+            oldFile.delete();
+            newFile.renameTo(oldFile);
+            return;
+        }
+        buffered_Writer.write(lastLine);
+
         buffered_Writer.flush();
         buffered_Writer.close();
         file_writer.close();
