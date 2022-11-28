@@ -9,30 +9,37 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * This is a java program for a 2048 game.
+ * Loads an application for a 2048 game.
  *
- * @author  Lisa Ho
- * @version 1.0
+ * @author  Lisa Ho Yen Xin
+ * @version %I%, %G%
  * @since   2020-11-1
  */
 public class Main extends Application {
+    /**
+     * Loads and sets the main menu scene to the stage. Displays the stage.
+     *
+     * @param primaryStage the stage to be displayed
+     * @throws IOException if fail to load file
+     *
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // display main menu
         Parent root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
-        root.setStyle("-fx-background-color: rgb(189, 177, 92)");
 
-        // Create the Scene
         Scene mainMenu = new Scene(root);
-        // Set the Scene to the Stage
         primaryStage.setScene(mainMenu);
-        // Display the Stage
         primaryStage.setTitle("2048 Game");
-        // center on screen
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
+    /**
+     * The main() method is ignored in correctly deployed JavaFX application.
+     * main() serves only as fallback in case the application can not be launched through deployment artifacts, e.g., in IDEs with limited FX support.
+     *
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
