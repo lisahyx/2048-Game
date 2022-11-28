@@ -29,10 +29,6 @@ public class ColorTheme {
     @FXML
     private Button green;
 
-    public ColorTheme() {
-        this.myColor=myColor;
-    }
-
     public void initialize() {
         backButton.setOnAction(backToMenu);
         black.setOnAction(e ->{
