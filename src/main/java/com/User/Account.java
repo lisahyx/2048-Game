@@ -3,6 +3,7 @@ package com.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Account implements Comparable<Account> {
     private long score = 0;
@@ -55,39 +56,36 @@ public class Account implements Comparable<Account> {
         oldFile.createNewFile(); // create file if file does not exist
         File newFile = new File("newHighScoreList.txt");
 
-        BufferedReader reader = new BufferedReader(new FileReader("highScoreList.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(oldFile));
 
-        String line = null;
-        String nextLine;
-        String lastLine = null;
+        String nextLine = reader.readLine();
+        String lastLine1 = null;
+        String lastLine2 = null;
 
         FileWriter file_writer;
         file_writer = new FileWriter(newFile, true);
         BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
 
-        while ((nextLine = reader.readLine()) != null) {
-            line = nextLine;
-
-            if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf(" ")))) {
-                lastLine = nextLine;
-            } else {
-                buffered_Writer.write(line + "\n");
-                lastLine = username.toUpperCase() + " ";
+        if (nextLine == null){
+            lastLine2 = username.toUpperCase() + " ";
+        }
+        else {
+             while (nextLine != null) {
+                if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf(" ")))) {
+                    lastLine1 = nextLine;
+                } else {
+                    buffered_Writer.write(nextLine + "\n");
+                    lastLine2 = username.toUpperCase() + " ";
+                }
+                nextLine = reader.readLine();
             }
         }
-        if ((nextLine = reader.readLine()) == null){
-            lastLine = username.toUpperCase() + " ";
-            buffered_Writer.write(lastLine);
-            buffered_Writer.flush();
-            buffered_Writer.close();
-            file_writer.close();
-            reader.close();
 
-            oldFile.delete();
-            newFile.renameTo(oldFile);
-            return;
+        if(lastLine1 != null) {
+            buffered_Writer.write(lastLine1 + "\n");
+        } else if (lastLine2 != null) {
+            buffered_Writer.write(lastLine2);
         }
-        buffered_Writer.write(lastLine);
 
         buffered_Writer.flush();
         buffered_Writer.close();
