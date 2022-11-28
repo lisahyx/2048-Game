@@ -11,12 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class MainMenu {
@@ -43,7 +40,11 @@ public class MainMenu {
             displayGameModes();
 
             Account account = new Account();
-            account.addUsername(username.getText());
+            try {
+                account.addUsername(username.getText());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
