@@ -1,3 +1,7 @@
 .text-area {
      -fx-background-color: transparent;
 }
+
+.text-area .text {
+  -fx-text-alignment: center;
+}
