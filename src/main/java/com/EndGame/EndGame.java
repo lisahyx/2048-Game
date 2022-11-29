@@ -148,7 +148,7 @@ public class EndGame {
         retryButton.setOnAction(actionEvent -> {
             GameModesController gameMode = new GameModesController();
             try {
-                if(score > Account.getScore()) {
+                if(score > Account.getOldScore()) {
                     Account.setOldScore(score);
                 }
                 primaryStage.close();
@@ -166,7 +166,7 @@ public class EndGame {
             alert.setContentText("Are you sure?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.orElse(null) == ButtonType.OK){
                 try {
                     userScore.compareScore(score);
                 } catch (IOException e) {
