@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * Format cells.
+ * Formats game board and cells.
  *
  * @author  Lisa Ho Yen Xin
  * @version %I%, %G%
