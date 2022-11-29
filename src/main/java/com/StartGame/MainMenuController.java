@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -60,11 +59,9 @@ public class MainMenuController {
         colorTheme.setOnAction(displayThemeChooser);
         quit.setOnAction(quitGame);
 
-        // remove focus from textfield
-        Platform.runLater( () -> vbox.requestFocus() );
-        
-        // minimum user input length
-        int minLength = 1;
+        Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
+
+        int minLength = 1; // minimum user input length
 
         // disable start button if user input is empty
         startGame.disableProperty().bind(
@@ -83,7 +80,7 @@ public class MainMenuController {
 
         stage = (Stage) startGame.getScene().getWindow();
         try {
-            root = FXMLLoader.load(getClass().getResource("/com/Game/game_modes.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/game_modes.fxml")));
             ColorThemeController.fxmlColor(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -108,7 +105,7 @@ public class MainMenuController {
 
             stage = (Stage) startGame.getScene().getWindow();
             try {
-                root = FXMLLoader.load(getClass().getResource("/com/Game/color_theme.fxml"));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/color_theme.fxml")));
                 ColorThemeController.fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -131,9 +128,9 @@ public class MainMenuController {
         alert.setContentText("Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.orElse(null) == ButtonType.OK){
             Platform.exit();
         }
     };
-};
+}
 
