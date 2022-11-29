@@ -14,12 +14,28 @@ public class Account {
     private static long oldScore;
 
     /**
-     * Retrieves user's username and score.
+     * Sets a new value to {@link #oldScore} variable.
+     *
+     * @param newScore new value
+     */
+    public static void setOldScore(long newScore) {
+        Account.oldScore = newScore;
+    }
+
+    /**
+     * @return {@link #oldScore} variable
+     */
+    public static long getOldScore() {
+        return oldScore;
+    }
+
+    /**
+     * Gets user's username and score.
      * Assigns user's old score to {@link #oldScore} variable to be used as comparison.
      *
      * @param line username and score
      */
-    public void getOldScore(String line) {
+    public void getStrScore(String line) {
         oldScore = Long.parseLong(line.substring(Integer.parseInt(String.valueOf(line.lastIndexOf(" ") + 1))));
     }
 
@@ -49,7 +65,7 @@ public class Account {
         // check if user is old user
         while (nextLine != null) {
             if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf(" ")))) {
-                getOldScore(nextLine); // get user's old score
+                getStrScore(nextLine); // get user's old score
             } else {
                 buffered_Writer.write(nextLine + "\n");
             }
