@@ -3,14 +3,35 @@ package com.User;
 import java.io.*;
 import java.util.Objects;
 
+/**
+ * Compares and writes user's username and score into a file.
+ *
+ * @author  Lisa Ho Yen Xin
+ * @version %I%, %G%
+ * @since   2020-11-1
+ */
 public class Account {
     private static long oldScore;
 
-    // get old score
+    /**
+     * Retrieves user's username and score.
+     * Assigns user's old score to {@link #oldScore} variable to be used as comparison.
+     *
+     * @param line username and score
+     */
     public void getOldScore(String line) {
         oldScore = Long.parseLong(line.substring(Integer.parseInt(String.valueOf(line.lastIndexOf(" ") + 1))));
     }
 
+    /**
+     * Reads from old file to check if user is new user.
+     * Saves user's old score in {@link #oldScore} variable if user is old user.
+     * Writes everything except current user's score from old file to new file.
+     * Delete old file and rename new file to the same as old file.
+     *
+     * @param username username
+     * @throws IOException if fail to load file
+     */
     public void addUsername(String username) throws IOException {
         File oldFile = new File("C:\\Users\\lisah\\IdeaProjects\\COMP2042_CW_hfylh2\\highScoreList.txt");
         oldFile.createNewFile(); // create file if file does not exist
@@ -25,15 +46,16 @@ public class Account {
         file_writer = new FileWriter(newFile, true);
         BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
 
+        // check if user is old user
         while (nextLine != null) {
             if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf(" ")))) {
-            getOldScore(nextLine);
-        } else {
-            buffered_Writer.write(nextLine + "\n");
-        }
+                getOldScore(nextLine); // get user's old score
+            } else {
+                buffered_Writer.write(nextLine + "\n");
+            }
             nextLine = reader.readLine();
         }
-        lastLine = username.toUpperCase() + " ";
+        lastLine = username.toUpperCase() + " "; // only write username to file
         buffered_Writer.write(lastLine);
         buffered_Writer.flush();
         buffered_Writer.close();
@@ -44,6 +66,13 @@ public class Account {
         newFile.renameTo(oldFile);
     }
 
+    /**
+     * Compares user's old score with user's new score.
+     * Writes user's highest score into file.
+     *
+     * @param newScore new score
+     * @throws IOException if fail to load file
+     */
     public void compareScore(long newScore) throws IOException {
         FileWriter file_writer;
         file_writer = new FileWriter("highScoreList.txt", true);
