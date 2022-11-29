@@ -16,6 +16,19 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.*;
 
+/**
+ * A controller for <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\main_menu.fxml">main_menu.fxml</a>.
+ * <p>
+ * Defines an initialize() method which calls certain methods when certain buttons are selected by the user.
+ * Calls the initialize() method when the contents of the fxml file have been completely loaded.
+ * <p>
+ * Disables start button if user input is less than the required character length.
+ * Saves username by calling {@link Account#addUsername(String)}.
+ *
+ * @author  Lisa Ho Yen Xin
+ * @version %I%, %G%
+ * @since   2020-11-1
+ */
 public class MainMenuController {
     @FXML
     private Button startGame;
@@ -47,17 +60,26 @@ public class MainMenuController {
             }
         });
 
-        Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
         colorTheme.setOnAction(displayThemeChooser);
         quit.setOnAction(quitGame);
 
-        // disable start button if user input is empty
+        // remove focus from textfield
+        Platform.runLater( () -> vbox.requestFocus() );
+        
+        // minimum user input length
         int minLength = 1;
 
+        // disable start button if user input is empty
         startGame.disableProperty().bind(
                 username.textProperty().length().lessThan(minLength));
     }
 
+    /**
+     * Hides the previous stage before loading and setting the game modes selection scene to the stage.
+     * Sets stage bg color according to user selection by calling
+     * {@link ColorThemeController#fxmlColor(Parent)} method.
+     * Displays the stage.
+     */
     public void displayGameModes () {
         Stage stage;
         Parent root;
@@ -70,12 +92,17 @@ public class MainMenuController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
+    /**
+     * Hides the previous stage before loading and setting the color theme selection scene to the stage.
+     * Sets stage bg color according to user selection by calling
+     * {@link ColorThemeController#fxmlColor(Parent)} method.
+     * Displays the stage.
+     */
     @FXML
     EventHandler<ActionEvent> displayThemeChooser = new EventHandler<>() {
         @Override
@@ -87,17 +114,20 @@ public class MainMenuController {
             try {
                 startPane.setVisible(false);
                 root = FXMLLoader.load(getClass().getResource("/com/Game/color_theme.fxml"));
-                ColorThemeController.fxmlColor(root); // set bg color
+                ColorThemeController.fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
     };
 
+    /**
+     * Displays an alert message when the quit game button is clicked to prompt user for quit game confirmation.
+     * Closes the program when user confirms on quitting the game.
+     */
     @FXML
     EventHandler<ActionEvent> quitGame = actionEvent -> {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
