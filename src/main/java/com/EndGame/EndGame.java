@@ -1,7 +1,7 @@
 package com.EndGame;
 
-import com.StartGame.ColorTheme;
-import com.StartGame.GameModes;
+import com.StartGame.ColorThemeController;
+import com.StartGame.GameModesController;
 import com.User.Account;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,15 +22,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
 
 /**
- * A class for game over screen.
+ * Loads game over screen.
+ *
+ * @author  Lisa Ho Yen Xin
+ * @version %I%, %G%
+ * @since   2020-11-1
  */
 public class EndGame {
     private static EndGame singleInstance = null;
@@ -38,6 +40,12 @@ public class EndGame {
 
     }
 
+    /**
+     * Returns an active instance of the class if it exists.
+     * Otherwise, creates a new instance of the {@link EndGame} class.
+     *
+     * @return instance of class
+     */
     public static EndGame getInstance(){
         if(singleInstance == null)
             singleInstance= new EndGame();
@@ -46,11 +54,20 @@ public class EndGame {
 
     Account userScore = new Account();
 
+    /**
+     * Formats and displays elements for the game over scene.
+     *
+     * @param endGameScene scene
+     * @param root root
+     * @param primaryStage stage
+     * @param score user's score
+     */
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
         Text text = new Text("GAME OVER");
         text.setFont(Font.font(80));
         root.getChildren().add(text);
 
+        // user's score
         Text scoreText = new Text(score+"");
         scoreText.setFill(Color.BLACK);
         scoreText.setFont(Font.font(80));
@@ -84,7 +101,8 @@ public class EndGame {
 
         VBox vBox = new VBox(5);
         VBox.setMargin(text, new Insets(-80, 0, 0, 0));
-        VBox.setMargin(scoreText, new Insets(0, 0, 120, 0));
+        VBox.setMargin(scoreText, new Insets(0, 0, 100, 0));
+        VBox.setMargin(highScoreButton, new Insets(20, 0, 0, 0));
         vBox.setAlignment(Pos. CENTER);
         vBox.prefWidthProperty().bind(primaryStage.widthProperty().multiply(0.90));
         vBox.prefHeightProperty().bind(primaryStage.heightProperty());
@@ -92,7 +110,7 @@ public class EndGame {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(mainMenuButton, retryButton, quitButton);
         hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(60);
+        hBox.setSpacing(55);
 
         vBox.getChildren().addAll(text, scoreText, hBox, highScoreButton);
 
@@ -100,16 +118,16 @@ public class EndGame {
         mainPane.setPadding(new Insets(30));
         root.getChildren().add(mainPane);
 
-        //main menu button onClick
+        //main menu button listener
         mainMenuButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Parent root;
                 try {
-                    userScore.addScore(score);
+                    userScore.compareScore(score);
                     primaryStage.close();
-                    root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
-                    ColorTheme.fxmlColor(root);
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/main_menu.fxml")));
+                    ColorThemeController.fxmlColor(root);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -126,18 +144,21 @@ public class EndGame {
             }
         });
 
-        //retry button onClick
+        //retry button listener
         retryButton.setOnAction(actionEvent -> {
-            GameModes a = new GameModes();
+            GameModesController gameMode = new GameModesController();
             try {
-                userScore.addScore(score);
+                if(score > Account.getScore()) {
+                    Account.setOldScore(score);
+                }
                 primaryStage.close();
-                a.start();
+                gameMode.start();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         });
 
+        // quit button listener
         quitButton.setOnAction(actionEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Quit Dialog");
@@ -146,32 +167,32 @@ public class EndGame {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                userScore.addScore(score);
+                try {
+                    userScore.compareScore(score);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 root.getChildren().clear();
                 primaryStage.close();
             }
         });
 
+        // high score button listener
         highScoreButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Parent root;
                 try {
-                    userScore.addScore(score);
-                    root = FXMLLoader.load(getClass().getResource("/com/Game/highScoreList.fxml"));
-                    ColorTheme.fxmlColor(root);
+                    userScore.compareScore(score);
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/high_score_list.fxml")));
+                    ColorThemeController.fxmlColor(root);
                     primaryStage.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-                // Create the Scene
                 Scene highScore = new Scene(root);
-                // Set the Scene to the Stage
                 primaryStage.setScene(highScore);
-                // Display the Stage
                 primaryStage.setTitle("High Score List");
-                // center on screen
                 primaryStage.centerOnScreen();
                 primaryStage.show();
             }
