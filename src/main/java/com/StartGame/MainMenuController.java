@@ -40,9 +40,6 @@ public class MainMenuController {
     private Button quit;
 
     @FXML
-    private Pane startPane;
-
-    @FXML
     private VBox vbox;
 
     @FXML
@@ -75,8 +72,8 @@ public class MainMenuController {
     }
 
     /**
-     * Hides the previous stage before loading and setting the game modes selection scene to the stage.
-     * Sets stage bg color according to user selection by calling
+     * Loads and sets the game modes selection scene to the stage.
+     * Sets stage background color according to user selection by calling
      * {@link ColorThemeController#fxmlColor(Parent)} method.
      * Displays the stage.
      */
@@ -86,7 +83,6 @@ public class MainMenuController {
 
         stage = (Stage) startGame.getScene().getWindow();
         try {
-            startPane.setVisible(false);
             root = FXMLLoader.load(getClass().getResource("/com/Game/game_modes.fxml"));
             ColorThemeController.fxmlColor(root);
         } catch (IOException e) {
@@ -98,8 +94,8 @@ public class MainMenuController {
     }
 
     /**
-     * Hides the previous stage before loading and setting the color theme selection scene to the stage.
-     * Sets stage bg color according to user selection by calling
+     * Loads and sets the color theme selection scene to the stage.
+     * Sets stage background color according to user selection by calling
      * {@link ColorThemeController#fxmlColor(Parent)} method.
      * Displays the stage.
      */
@@ -112,7 +108,6 @@ public class MainMenuController {
 
             stage = (Stage) startGame.getScene().getWindow();
             try {
-                startPane.setVisible(false);
                 root = FXMLLoader.load(getClass().getResource("/com/Game/color_theme.fxml"));
                 ColorThemeController.fxmlColor(root);
             } catch (IOException e) {
