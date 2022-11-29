@@ -5,6 +5,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Formats the font, position, and color for the text for cell numbers.
+ *
+ * @author  Lisa Ho Yen Xin - modified
+ * @version %I%, %G%
+ * @since   2020-11-1
+ */
 class TextMaker {
     private static TextMaker singleInstance = null;
 
@@ -12,12 +19,27 @@ class TextMaker {
 
     }
 
+    /**
+     * Returns an active instance of the class if it exists.
+     * Otherwise, creates a new instance of the {@link TextMaker} class.
+     *
+     * @return instance of class
+     */
     static TextMaker getSingleInstance() {
         if (singleInstance == null)
             singleInstance = new TextMaker();
         return singleInstance;
     }
 
+    /**
+     * Formats the font, position, and color for the text for cell numbers.
+     *
+     * @param input the cell number
+     * @param xCell X coordinate
+     * @param yCell Y coordinate
+     * @param root the container component
+     * @return text for cell number
+     */
     Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 7.0;
@@ -25,10 +47,15 @@ class TextMaker {
         text.setFont(Font.font(fontSize));
         text.relocate((xCell + (1.2)* length / 7.0), (yCell + 2 * length / 7.0));
         text.setFill(Color.WHITE);
-
         return text;
     }
 
+    /**
+     * Swaps the cell numbers and positions of two cells.
+     *
+     * @param first the first cell
+     * @param second the second cell
+     */
     static void changeTwoText(Text first, Text second) {
         String temp;
         temp = first.getText();
@@ -43,7 +70,6 @@ class TextMaker {
         tempNumber = first.getY();
         first.setY(second.getY());
         second.setY(tempNumber);
-
     }
 
 }
