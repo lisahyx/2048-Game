@@ -2,7 +2,10 @@ package com.StartGame;
 
 import com.Game.Game;
 import com.Game.GameScene;
+import com.User.Account;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -16,14 +19,31 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
+import static com.Game.GameScene.getScore;
+
+/**
+ * A controller for
+ * <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\game_modes.fxml">
+ * game_modes.fxml</a>.
+ *
+ * @author  Lisa Ho Yen Xin
+ * @version %I%, %G%
+ * @since   2020-11-1
+ */
 public class GameModesController {
-    public void buttonListener (ActionEvent event) throws Exception {
+    /**
+     * Gets ids of buttons and sets the number of
+     *
+     * @param event
+     */
+    public void buttonListener (ActionEvent event) {
         String id = ((Node) event.getSource()).getId();
         GameScene a = new GameScene();
 
@@ -61,6 +81,8 @@ public class GameModesController {
         this.gameRoot = gameRoot;
     }
 
+    Account userScore = new Account();
+
     public void start () {
         Group menuRoot = new Group();
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
@@ -75,7 +97,6 @@ public class GameModesController {
         BackgroundFill background_fill = new BackgroundFill(Color.rgb(120, 100, 100), CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(background_fill);
 
-
         Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(120, 120, 120, 0.2));
         backgroundOfMenu.setX(WIDTH / 2 - 120);
         backgroundOfMenu.setY(180);
@@ -88,12 +109,12 @@ public class GameModesController {
 
         setGameRoot(gameRoot);
 
-        // change bg color according to user choice
-        if(Objects.equals(ColorThemeController.myColor, "black")) {
+        // change background color according to user choice
+        if(Objects.equals(ColorThemeController.getMyColor(), "black")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
-        } else if(Objects.equals(ColorThemeController.myColor, "white")) {
+        } else if(Objects.equals(ColorThemeController.getMyColor(), "white")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
-        } else if (Objects.equals(ColorThemeController.myColor, "green")) {
+        } else if (Objects.equals(ColorThemeController.getMyColor(), "green")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
         } else {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
@@ -107,18 +128,36 @@ public class GameModesController {
         Game game = new Game();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
-        // Display the Stage
+        // display the Stage
         primaryStage.show();
         gameRoot.requestFocus(); // take away focus from quit button
+
+        // close window listener
+        primaryStage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            userScore.compareScore(getScore());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+            }
+        });
 
         // quit button
         Button quitButton = new Button("QUIT");
         quitButton.setPrefSize(85,35);
-        quitButton.setLayoutX(800);
-        quitButton.setLayoutY(550);
+        quitButton.setLayoutX(762);
+        quitButton.setLayoutY(572);
         quitButton.setTextFill(Color.BLACK);
         gameRoot.getChildren().add(quitButton);
 
+        // quit button listener
         quitButton.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Quit Dialog");
@@ -128,7 +167,7 @@ public class GameModesController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 try {
-                    deleteLastRecord();
+                    userScore.compareScore(GameScene.getScore()); // write score to file
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -138,19 +177,5 @@ public class GameModesController {
                 gameRoot.requestFocus();
             }
         });
-    }
-
-    //delete last line from file (remove last saved username)
-    private void deleteLastRecord() throws IOException {
-        RandomAccessFile f = new RandomAccessFile("highScoreList.txt", "rw");
-        long length = f.length() - 1;
-        byte b;
-        do {
-            length -= 1;
-            f.seek(length);
-            b = f.readByte();
-        } while (b != 10);
-        f.setLength(length + 1);
-        f.close();
     }
 }
