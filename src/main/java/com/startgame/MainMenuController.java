@@ -1,6 +1,6 @@
-package com.StartGame;
+package com.startgame;
 
-import com.User.Account;
+import com.player.Account;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -80,7 +80,7 @@ public class MainMenuController {
 
         stage = (Stage) startGame.getScene().getWindow();
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/game_modes.fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/game_modes.fxml")));
             ColorThemeController.fxmlColor(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -105,7 +105,7 @@ public class MainMenuController {
 
             stage = (Stage) startGame.getScene().getWindow();
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/color_theme.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/color_theme.fxml")));
                 ColorThemeController.fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);

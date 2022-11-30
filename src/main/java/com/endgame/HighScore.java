@@ -1,4 +1,4 @@
-package com.EndGame;
+package com.endgame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

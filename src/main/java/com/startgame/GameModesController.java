@@ -1,8 +1,8 @@
-package com.StartGame;
+package com.startgame;
 
-import com.Game.Game;
-import com.Game.GameScene;
-import com.User.Account;
+import com.ingame.Game;
+import com.ingame.GameScene;
+import com.player.Account;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -28,29 +28,30 @@ import java.util.Optional;
  */
 public class GameModesController {
     /**
-     * Gets ids of buttons and sets the number of
+     * Gets ids of buttons and sets the number of cells on the game board
+     * according to button selected before loading the game.
      *
      * @param event
      */
     public void buttonListener (ActionEvent event) {
         String id = ((Node) event.getSource()).getId();
-        GameScene a = new GameScene();
+        GameScene gameScene = new GameScene();
 
         switch (id) {
             case "4x4" -> {
-                a.setN(4);
+                gameScene.setN(4);
                 ((Node) event.getSource()).getScene().getWindow().hide();
-                start();
+                gameStart();
             }
             case "5x5" -> {
-                a.setN(5);
+                gameScene.setN(5);
                 ((Node) event.getSource()).getScene().getWindow().hide();
-                start();
+                gameStart();
             }
             case "6x6" -> {
-                a.setN(6);
+                gameScene.setN(6);
                 ((Node) event.getSource()).getScene().getWindow().hide();
-                start();
+                gameStart();
             }
         }
     }
@@ -60,17 +61,26 @@ public class GameModesController {
     private Group gameRoot = new Group();
     private Scene gameScene;
 
+    /**
+     * @param gameScene game scene
+     */
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
 
+    /**
+     * @param gameRoot container component of elements of game
+     */
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
     }
 
     Account userScore = new Account();
 
-    public void start () {
+    /**
+     * Formats game
+     */
+    public void gameStart() {
         Group endgameRoot = new Group();
         Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
 
@@ -92,8 +102,9 @@ public class GameModesController {
         Stage primaryStage = new Stage();
 
         primaryStage.setScene(gameScene);
+
         Game game = new Game();
-        game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
+        game.gamePlay(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
         // display the Stage
         primaryStage.show();

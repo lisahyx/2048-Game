@@ -1,4 +1,4 @@
-package com.User;
+package com.player;
 
 import java.io.*;
 import java.util.Objects;

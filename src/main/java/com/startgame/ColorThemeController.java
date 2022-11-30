@@ -1,4 +1,4 @@
-package com.StartGame;
+package com.startgame;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -164,7 +164,7 @@ public class ColorThemeController {
 
             stage = (Stage) backButton.getScene().getWindow();
             try {
-                root = FXMLLoader.load(getClass().getResource("/com/Game/main_menu.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/com/ingame/main_menu.fxml"));
                 fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);

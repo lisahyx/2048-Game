@@ -1,5 +1,6 @@
-package com.Game;
+package com.cell;
 
+import com.ingame.GameScene;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -12,7 +13,7 @@ import javafx.scene.text.Text;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-class TextMaker {
+public class TextMaker {
     private static TextMaker singleInstance = null;
 
     private TextMaker() {
@@ -25,7 +26,7 @@ class TextMaker {
      *
      * @return instance of class
      */
-    static TextMaker getSingleInstance() {
+    public static TextMaker getSingleInstance() {
         if (singleInstance == null)
             singleInstance = new TextMaker();
         return singleInstance;
@@ -35,12 +36,12 @@ class TextMaker {
      * Formats the font, position, and color for the text for cell numbers.
      *
      * @param input the cell number
-     * @param xCell X coordinate
-     * @param yCell Y coordinate
-     * @param root the container component
+     * @param xCell the X coordinate
+     * @param yCell the Y coordinate
+     * @param root the root
      * @return text for cell number
      */
-    Text madeText(String input, double xCell, double yCell, Group root) {
+    public Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 7.0;
         Text text = new Text(input);

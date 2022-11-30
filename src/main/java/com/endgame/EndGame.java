@@ -1,8 +1,8 @@
-package com.EndGame;
+package com.endgame;
 
-import com.StartGame.ColorThemeController;
-import com.StartGame.GameModesController;
-import com.User.Account;
+import com.startgame.ColorThemeController;
+import com.startgame.GameModesController;
+import com.player.Account;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -126,7 +126,7 @@ public class EndGame {
                 try {
                     userScore.compareScore(score);
                     primaryStage.close();
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/main_menu.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
                     ColorThemeController.fxmlColor(root);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -152,7 +152,7 @@ public class EndGame {
                     Account.setOldScore(score);
                 }
                 primaryStage.close();
-                gameMode.start();
+                gameMode.gameStart();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -184,7 +184,7 @@ public class EndGame {
                 Parent root;
                 try {
                     userScore.compareScore(score);
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/Game/high_score_list.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/high_score_list.fxml")));
                     ColorThemeController.fxmlColor(root);
                     primaryStage.close();
                 } catch (IOException e) {
