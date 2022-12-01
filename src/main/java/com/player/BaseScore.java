@@ -5,7 +5,7 @@ package com.player;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public abstract class AbstractScore {
+public abstract class BaseScore {
     private static long oldScore;
 
     /**

@@ -9,7 +9,7 @@ import java.io.IOException;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public class Score extends AbstractScore {
+public class Score extends BaseScore {
     /**
      * Compares user's old score with user's new score.
      * Writes user's highest score into file.

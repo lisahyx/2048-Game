@@ -10,7 +10,7 @@ import java.util.Objects;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public class Username extends AbstractScore {
+public class Username extends BaseScore {
     /**
      * Reads from old file to check if user is new user.
      * Saves user's old score in {@link #oldScore} variable if user is old user.
