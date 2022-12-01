@@ -1,4 +1,4 @@
-package com.ingame;
+package com;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ public class Main extends Application {
     /**
      * Loads and sets the main menu scene to the stage. Displays the stage.
      *
-     * @param primaryStage the stage to be displayed
+     * @param primaryStage stage to be displayed
      * @throws IOException if fail to load file
      *
      */
@@ -39,7 +39,7 @@ public class Main extends Application {
      * The main() method is ignored in correctly deployed JavaFX application.
      * main() serves only as fallback in case the application can not be launched through deployment artifacts, e.g., in IDEs with limited FX support.
      *
-     * @param args the command line arguments
+     * @param args command line arguments
      */
     public static void main(String[] args) {
         launch(args);

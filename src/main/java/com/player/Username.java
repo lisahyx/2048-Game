@@ -27,7 +27,7 @@ public class Username {
      * Writes everything except current user's score from old file to new file.
      * Delete old file and rename new file to the same as old file.
      *
-     * @param username the username
+     * @param username username
      * @throws IOException if fail to load file
      */
     public void addUsername(String username) throws IOException {

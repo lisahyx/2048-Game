@@ -17,6 +17,12 @@ import static com.startgame.colortheme.ChangeColor.fxmlColor;
 
 /**
  * A controller for <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\color_theme.fxml">color_theme.fxml</a>.
+ * <p>
+ * Sets background color and disables the other color buttons.
+ * Assigns the background color chosen to a variable and increases counter
+ * to indicate the number of button clicks.
+ * Enables the other color buttons and resets all variables when button is
+ * clicked twice to let user select other colors.
  */
 public class ColorThemeController {
     @FXML
@@ -54,13 +60,6 @@ public class ColorThemeController {
         return myColor;
     }
 
-    /**
-     * Sets background color and disables the other color buttons.
-     * Assigns the background color chosen to a variable and increases counter
-     * to indicate the number of button clicks.
-     * Enables the other color buttons and resets all variables when button is
-     * clicked twice to let user select other colors.
-     */
     private void paneBlack() {
         pane.setStyle("-fx-background-color: black"); // set background color
 
@@ -80,12 +79,6 @@ public class ColorThemeController {
         }
     }
 
-    /**
-     * Sets background color and disables the other color buttons.
-     * Assigns the background color chosen to a variable and increases counter to indicate the number of button clicks.
-     * Enables the other color buttons and resets all variables when button is
-     * clicked twice to let user select other colors.
-     */
     private void paneWhite() {
         pane.setStyle("-fx-background-color: white");
 
@@ -103,12 +96,6 @@ public class ColorThemeController {
         }
     }
 
-    /**
-     * Sets background color and disables the other color buttons.
-     * Assigns the background color chosen to a variable and increases counter to indicate the number of button clicks.
-     * Enables the other color buttons and resets all variables when button is
-     * clicked twice to let user select other colors.
-     */
     private void paneGreen() {
         pane.setStyle("-fx-background-color: green");
 
@@ -129,8 +116,7 @@ public class ColorThemeController {
     /**
      * Loads and sets the main menu scene to the stage.
      * Sets stage background color according to user selection by calling
-     * {@link ChangeColor#fxmlColor(Parent)} method.
-     * Displays the stage.
+     * {@link ChangeColor#fxmlColor(Parent)} method and displays the stage.
      */
     @FXML
     EventHandler<ActionEvent> backToMenu = new EventHandler<>() {

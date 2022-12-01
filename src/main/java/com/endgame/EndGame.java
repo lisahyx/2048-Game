@@ -181,6 +181,14 @@ public class EndGame implements ButtonListener {
         });
     }
 
+    /**
+     * Saves user's score when quit button is selected.
+     *
+     * @param event action event
+     * @param primaryStage stage
+     * @param root root
+     * @param score user score
+     */
     @Override
     public void quitButtonListener(ActionEvent event, Stage primaryStage, Group root, long score) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

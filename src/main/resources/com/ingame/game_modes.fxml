@@ -10,9 +10,9 @@
    <children>
       <VBox layoutX="538.0" layoutY="254.0" prefHeight="191.0" prefWidth="90.0" spacing="20">
          <children>
+            <Button id="3x3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gameMode" prefHeight="32.0" prefWidth="69.0" text="3 x 3" />
             <Button id="4x4" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gameMode" prefHeight="32.0" prefWidth="69.0" text="4 x 4" />
             <Button id="5x5" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gameMode" prefHeight="32.0" prefWidth="69.0" text="5 x 5" />
-            <Button id="6x6" alignment="CENTER" mnemonicParsing="false" onAction="#gameMode" prefHeight="32.0" prefWidth="69.0" text="6 x 6" />
             <Button id="blackout" alignment="CENTER" mnemonicParsing="false" onAction="#gameMode" prefHeight="32.0" prefWidth="69.0" text="Blackout" />
          </children>
       </VBox>

@@ -14,7 +14,7 @@ public class ChangeColor {
      * Sets background color of fxml stages according to the value stored in {@link ColorThemeController#myColor}.
      * Sets background color as default color if no color is selected by the user.
      *
-     * @param root the background
+     * @param root background
      */
     public static void fxmlColor(Parent root) {
         if(Objects.equals(ColorThemeController.myColor, "black")) {

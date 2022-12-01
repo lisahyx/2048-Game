@@ -26,9 +26,9 @@ public class GameModesController {
         GameScene game = new GameScene();
 
         switch (id) {
+            case "3x3" -> status.setN(3);
             case "4x4" -> status.setN(4);
             case "5x5" -> status.setN(5);
-            case "6x6" -> status.setN(6);
         }
         ((Node) event.getSource()).getScene().getWindow().hide();
         game.gameStart();

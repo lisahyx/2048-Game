@@ -12,4 +12,10 @@ module com {
     opens com.startgame to javafx.fxml;
     exports com.cell;
     opens com.cell to javafx.fxml;
+    exports com.startgame.colortheme;
+    opens com.startgame.colortheme to javafx.fxml;
+    exports com.startgame.gamemode;
+    opens com.startgame.gamemode to javafx.fxml;
+    exports com;
+    opens com to javafx.fxml;
 }

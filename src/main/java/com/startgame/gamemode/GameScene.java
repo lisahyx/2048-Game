@@ -1,6 +1,7 @@
 package com.startgame.gamemode;
 
 import com.ingame.Game;
+import com.ingame.GameMovement;
 import com.ingame.GameStatus;
 import com.player.Score;
 import com.startgame.colortheme.ColorThemeController;
@@ -31,7 +32,7 @@ public class GameScene implements ButtonListener {
     private Group gameRoot = new Group();
     private Scene gameScene;
 
-    long score = GameStatus.getScore();
+    long score = GameMovement.getScore();
 
     /**
      * @param gameScene game scene
@@ -41,7 +42,7 @@ public class GameScene implements ButtonListener {
     }
 
     /**
-     * @param gameRoot container component of elements of game
+     * @param gameRoot root of game
      */
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
@@ -93,6 +94,14 @@ public class GameScene implements ButtonListener {
         });
     }
 
+    /**
+     * Saves user's score when quit button is selected.
+     *
+     * @param event action event
+     * @param primaryStage stage
+     * @param root root
+     * @param score user score
+     */
     @Override
     public void quitButtonListener(ActionEvent event, Stage primaryStage, Group root, long score) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
