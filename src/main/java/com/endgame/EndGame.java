@@ -1,8 +1,9 @@
 package com.endgame;
 
-import com.startgame.ColorThemeController;
-import com.startgame.GameModesController;
-import com.player.Account;
+import com.player.Score;
+import com.startgame.colortheme.ChangeColor;
+import com.startgame.gamemode.GameScene;
+import com.startgame.gamemode.ButtonListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,6 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
-
 /**
  * Loads game over screen.
  *
@@ -34,7 +34,7 @@ import java.util.Optional;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public class EndGame {
+public class EndGame implements ButtonListener {
     private static EndGame singleInstance = null;
     private EndGame(){
 
@@ -52,7 +52,7 @@ public class EndGame {
         return singleInstance;
     }
 
-    Account userScore = new Account();
+    Score userScore = new Score();
 
     /**
      * Formats and displays elements for the game over scene.
@@ -97,6 +97,7 @@ public class EndGame {
         highScoreButton.setTextFill(Color.BLACK);
         root.getChildren().add(highScoreButton);
 
+        // organize all the elements
         StackPane mainPane;
 
         VBox vBox = new VBox(5);
@@ -127,18 +128,13 @@ public class EndGame {
                     userScore.compareScore(score);
                     primaryStage.close();
                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
-                    ColorThemeController.fxmlColor(root);
+                    ChangeColor.fxmlColor(root);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-                // Create the Scene
                 Scene mainMenu = new Scene(root);
-                // Set the Scene to the Stage
                 primaryStage.setScene(mainMenu);
-                // Display the Stage
                 primaryStage.setTitle("2048 Game");
-                // center on screen
                 primaryStage.centerOnScreen();
                 primaryStage.show();
             }
@@ -146,13 +142,13 @@ public class EndGame {
 
         //retry button listener
         retryButton.setOnAction(actionEvent -> {
-            GameModesController gameMode = new GameModesController();
+            GameScene game = new GameScene();
             try {
-                if(score > Account.getOldScore()) {
-                    Account.setOldScore(score);
+                if(score > Score.getOldScore()) {
+                    Score.setOldScore(score);
                 }
                 primaryStage.close();
-                gameMode.gameStart();
+                game.gameStart();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -160,21 +156,7 @@ public class EndGame {
 
         // quit button listener
         quitButton.setOnAction(actionEvent -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Quit Dialog");
-            alert.setHeaderText("Quit from this page");
-            alert.setContentText("Are you sure?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.orElse(null) == ButtonType.OK){
-                try {
-                    userScore.compareScore(score);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                root.getChildren().clear();
-                primaryStage.close();
-            }
+            quitButtonListener(actionEvent, primaryStage, root, score);
         });
 
         // high score button listener
@@ -185,7 +167,7 @@ public class EndGame {
                 try {
                     userScore.compareScore(score);
                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/high_score_list.fxml")));
-                    ColorThemeController.fxmlColor(root);
+                    ChangeColor.fxmlColor(root);
                     primaryStage.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -197,5 +179,24 @@ public class EndGame {
                 primaryStage.show();
             }
         });
+    }
+
+    @Override
+    public void quitButtonListener(ActionEvent event, Stage primaryStage, Group root, long score) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Dialog");
+        alert.setHeaderText("Quit from this page");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.orElse(null) == ButtonType.OK){
+            try {
+                userScore.compareScore(score);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            root.getChildren().clear();
+            primaryStage.close();
+        }
     }
 }

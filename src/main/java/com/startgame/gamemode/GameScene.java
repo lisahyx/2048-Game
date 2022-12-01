@@ -1,11 +1,11 @@
-package com.startgame;
+package com.startgame.gamemode;
 
 import com.ingame.Game;
-import com.ingame.GameScene;
-import com.player.Account;
+import com.ingame.GameStatus;
+import com.player.Score;
+import com.startgame.colortheme.ColorThemeController;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -13,53 +13,25 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
 /**
- * A controller for
- * <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\game_modes.fxml">
- * game_modes.fxml</a>.
+ * Formats game elements.
  *
  * @author  Lisa Ho Yen Xin
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public class GameModesController {
-    /**
-     * Gets ids of buttons and sets the number of cells on the game board
-     * according to button selected before loading the game.
-     *
-     * @param event
-     */
-    public void buttonListener (ActionEvent event) {
-        String id = ((Node) event.getSource()).getId();
-        GameScene gameScene = new GameScene();
-
-        switch (id) {
-            case "4x4" -> {
-                gameScene.setN(4);
-                ((Node) event.getSource()).getScene().getWindow().hide();
-                gameStart();
-            }
-            case "5x5" -> {
-                gameScene.setN(5);
-                ((Node) event.getSource()).getScene().getWindow().hide();
-                gameStart();
-            }
-            case "6x6" -> {
-                gameScene.setN(6);
-                ((Node) event.getSource()).getScene().getWindow().hide();
-                gameStart();
-            }
-        }
-    }
-
+public class GameScene implements ButtonListener {
     static final int WIDTH = 900;
     static final int HEIGHT = 650;
+    private final Score userScore = new Score();
     private Group gameRoot = new Group();
     private Scene gameScene;
+
+    long score = GameStatus.getScore();
 
     /**
      * @param gameScene game scene
@@ -75,10 +47,8 @@ public class GameModesController {
         this.gameRoot = gameRoot;
     }
 
-    Account userScore = new Account();
-
     /**
-     * Formats game
+     * Formats game elements.
      */
     public void gameStart() {
         Group endgameRoot = new Group();
@@ -100,7 +70,6 @@ public class GameModesController {
         setGameScene(gameScene);
 
         Stage primaryStage = new Stage();
-
         primaryStage.setScene(gameScene);
 
         Game game = new Game();
@@ -119,24 +88,29 @@ public class GameModesController {
         gameRoot.getChildren().add(quitButton);
 
         // quit button listener
-        quitButton.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Quit Dialog");
-            alert.setHeaderText("Quit from this page");
-            alert.setContentText("Are you sure?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.orElse(null)  == ButtonType.OK) {
-                try {
-                    userScore.compareScore(GameScene.getScore()); // write score to file
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                gameRoot.getChildren().clear();
-                primaryStage.close();
-            } else {
-                gameRoot.requestFocus();
-            }
+        quitButton.setOnAction(actionEvent -> {
+            quitButtonListener (actionEvent, primaryStage, gameRoot, score);
         });
+    }
+
+    @Override
+    public void quitButtonListener(ActionEvent event, Stage primaryStage, Group root, long score) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Dialog");
+        alert.setHeaderText("Quit from this page");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.orElse(null)  == ButtonType.OK) {
+            try {
+                userScore.compareScore(score); // write score to file
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            root.getChildren().clear();
+            primaryStage.close();
+        } else {
+            root.requestFocus();
+        }
     }
 }

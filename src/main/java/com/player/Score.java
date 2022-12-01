@@ -9,7 +9,25 @@ import java.io.IOException;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public class Score extends BaseScore {
+public class Score {
+    static long oldScore;
+
+    /**
+     * Sets a new value to {@link #oldScore} variable.
+     *
+     * @param newScore new value
+     */
+    public static void setOldScore(long newScore) {
+        oldScore = newScore;
+    }
+
+    /**
+     * @return {@link #oldScore} variable
+     */
+    public static long getOldScore() {
+        return oldScore;
+    }
+
     /**
      * Compares user's old score with user's new score.
      * Writes user's highest score into file.

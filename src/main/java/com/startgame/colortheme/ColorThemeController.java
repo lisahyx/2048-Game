@@ -1,4 +1,4 @@
-package com.startgame;
+package com.startgame.colortheme;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,11 +13,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.startgame.colortheme.ChangeColor.fxmlColor;
+
 /**
  * A controller for <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\color_theme.fxml">color_theme.fxml</a>.
- * <p>
- * Defines an initialize() method which calls certain methods when certain buttons are selected by the user.
- * Calls the initialize() method when the contents of the fxml file have been completely loaded.
  */
 public class ColorThemeController {
     @FXML
@@ -37,22 +36,17 @@ public class ColorThemeController {
 
     public void initialize() {
         backButton.setOnAction(backToMenu);
-        black.setOnAction(e ->{
-            paneBlack();
-        });
-        white.setOnAction(e ->{
-            paneWhite();
-        });
-        green.setOnAction(e ->{
-            paneGreen();
-        });
+        black.setOnAction(e -> paneBlack());
+        white.setOnAction(e -> paneWhite());
+        green.setOnAction(e -> paneGreen());
     }
 
     int counter; // to indicate button clicks
-    private static String myColor;
+    static String myColor;
 
     /**
-     * Returns a variable that indicates the background color selected by the user that is to be used in other methods.
+     * Returns a variable that indicates the background color selected by
+     * the user that is to be used in other methods.
      *
      * @return background color
      */
@@ -62,7 +56,8 @@ public class ColorThemeController {
 
     /**
      * Sets background color and disables the other color buttons.
-     * Assigns the background color chosen to a variable and increases counter to indicate the number of button clicks.
+     * Assigns the background color chosen to a variable and increases counter
+     * to indicate the number of button clicks.
      * Enables the other color buttons and resets all variables when button is
      * clicked twice to let user select other colors.
      */
@@ -132,27 +127,9 @@ public class ColorThemeController {
     }
 
     /**
-     * Sets background color of fxml stages according to the value stored in {@link #myColor}.
-     * Sets background color as default color if no color is selected by the user.
-     *
-     * @param root the background
-     */
-    public static void fxmlColor(Parent root) {
-        if(Objects.equals(ColorThemeController.myColor, "black")) {
-            root.setStyle("-fx-background-color: black");
-        } else if(Objects.equals(ColorThemeController.myColor, "white")) {
-            root.setStyle("-fx-background-color: white");
-        } else if (Objects.equals(ColorThemeController.myColor, "green")) {
-            root.setStyle("-fx-background-color: green");
-        } else {
-            root.setStyle("-fx-background-color: rgb(189, 177, 92)");
-        }
-    }
-
-    /**
      * Loads and sets the main menu scene to the stage.
      * Sets stage background color according to user selection by calling
-     * {@link #fxmlColor(Parent)} method.
+     * {@link ChangeColor#fxmlColor(Parent)} method.
      * Displays the stage.
      */
     @FXML
@@ -164,7 +141,7 @@ public class ColorThemeController {
 
             stage = (Stage) backButton.getScene().getWindow();
             try {
-                root = FXMLLoader.load(getClass().getResource("/com/ingame/main_menu.fxml"));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
                 fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);

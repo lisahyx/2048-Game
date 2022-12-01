@@ -10,10 +10,20 @@ import java.util.Objects;
  * @version %I%, %G%
  * @since   2020-11-1
  */
-public class Username extends BaseScore {
+public class Username {
+    /**
+     * Gets and assigns user's old score to {@link Score#oldScore}
+     * variable to be used as comparison when game ends.
+     *
+     * @param line user's old score
+     */
+    public void getStrScore(String line) {
+        Score.oldScore = Long.parseLong(line.substring(Integer.parseInt(String.valueOf(line.lastIndexOf(" ") + 1))));
+    }
+
     /**
      * Reads from old file to check if user is new user.
-     * Saves user's old score in {@link #oldScore} variable if user is old user.
+     * Saves user's old score in {@link Score#oldScore} variable if user is old user.
      * Writes everything except current user's score from old file to new file.
      * Delete old file and rename new file to the same as old file.
      *
@@ -21,14 +31,15 @@ public class Username extends BaseScore {
      * @throws IOException if fail to load file
      */
     public void addUsername(String username) throws IOException {
-        File oldFile = new File("C:\\Users\\lisah\\IdeaProjects\\COMP2042_CW_hfylh2\\highScoreList.txt");
+
+        File oldFile = new File("highScoreList.txt");
         oldFile.createNewFile(); // create file if file does not exist
         File newFile = new File("newHighScoreList.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader(oldFile));
 
         String nextLine = reader.readLine();
-        String lastLine = null;
+        String lastLine;
 
         FileWriter file_writer;
         file_writer = new FileWriter(newFile, true);

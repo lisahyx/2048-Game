@@ -1,6 +1,7 @@
 package com.startgame;
 
-import com.player.Account;
+import com.player.Username;
+import com.startgame.colortheme.ChangeColor;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,12 +18,6 @@ import java.util.*;
 
 /**
  * A controller for <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\main_menu.fxml">main_menu.fxml</a>.
- * <p>
- * Defines an initialize() method which calls certain methods when certain buttons are selected by the user.
- * Calls the initialize() method when the contents of the fxml file have been completely loaded.
- * <p>
- * Disables start button if user input is less than the required character length.
- * Saves username by calling {@link Account#addUsername(String)}.
  *
  * @author  Lisa Ho Yen Xin
  * @version %I%, %G%
@@ -44,11 +39,15 @@ public class MainMenuController {
     @FXML
     private TextField username;
 
+    /**
+     * Disables start button if user input is less than the required character length.
+     * Saves username by calling {@link Username#addUsername(String)}.
+     */
     public void initialize() {
         startGame.setOnAction(e ->{
             displayGameModes();
 
-            Account account = new Account();
+            Username account = new Username();
             try {
                 account.addUsername(username.getText());
             } catch (IOException ex) {
@@ -71,7 +70,7 @@ public class MainMenuController {
     /**
      * Loads and sets the game modes selection scene to the stage.
      * Sets stage background color according to user selection by calling
-     * {@link ColorThemeController#fxmlColor(Parent)} method.
+     * {@link ChangeColor#fxmlColor(Parent)} method.
      * Displays the stage.
      */
     public void displayGameModes () {
@@ -81,7 +80,7 @@ public class MainMenuController {
         stage = (Stage) startGame.getScene().getWindow();
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/game_modes.fxml")));
-            ColorThemeController.fxmlColor(root);
+            ChangeColor.fxmlColor(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -93,7 +92,7 @@ public class MainMenuController {
     /**
      * Loads and sets the color theme selection scene to the stage.
      * Sets stage background color according to user selection by calling
-     * {@link ColorThemeController#fxmlColor(Parent)} method.
+     * {@link ChangeColor#fxmlColor(Parent)} method.
      * Displays the stage.
      */
     @FXML
@@ -106,7 +105,7 @@ public class MainMenuController {
             stage = (Stage) startGame.getScene().getWindow();
             try {
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/color_theme.fxml")));
-                ColorThemeController.fxmlColor(root);
+                ChangeColor.fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

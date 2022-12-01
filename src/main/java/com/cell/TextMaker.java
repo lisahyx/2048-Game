@@ -1,6 +1,6 @@
 package com.cell;
 
-import com.ingame.GameScene;
+import com.ingame.GameStatus;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -42,7 +42,7 @@ public class TextMaker {
      * @return text for cell number
      */
     public Text madeText(String input, double xCell, double yCell, Group root) {
-        double length = GameScene.getLENGTH();
+        double length = GameStatus.getLENGTH();
         double fontSize = (3 * length) / 7.0;
         Text text = new Text(input);
         text.setFont(Font.font(fontSize));
