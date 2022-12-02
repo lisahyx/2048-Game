@@ -31,7 +31,6 @@ public class Username {
      * @throws IOException if fail to load file
      */
     public void addUsername(String username) throws IOException {
-
         File oldFile = new File("highScoreList.txt");
         oldFile.createNewFile(); // create file if file does not exist
         File newFile = new File("newHighScoreList.txt");
@@ -47,14 +46,14 @@ public class Username {
 
         // check if user is old user
         while (nextLine != null) {
-            if (Objects.equals(username.toUpperCase(), nextLine.substring(0, nextLine.indexOf(" ")))) {
+            if (Objects.equals(username, nextLine.substring(0, nextLine.indexOf(" ")))) {
                 getStrScore(nextLine); // get user's old score
             } else {
                 buffered_Writer.write(nextLine + "\n");
             }
             nextLine = reader.readLine();
         }
-        lastLine = username.toUpperCase() + " "; // only write username to file
+        lastLine = username + " "; // only write username to file
         buffered_Writer.write(lastLine);
         buffered_Writer.flush();
         buffered_Writer.close();
