@@ -1,6 +1,7 @@
 module com {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
     opens com.ingame to javafx.fxml;
     exports com.ingame;
@@ -16,6 +17,6 @@ module com {
     opens com.startgame.colortheme to javafx.fxml;
     exports com.startgame.gamemode;
     opens com.startgame.gamemode to javafx.fxml;
-    exports com;
-    opens com to javafx.fxml;
+    exports com.main;
+    opens com.main to javafx.fxml;
 }

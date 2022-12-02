@@ -18,13 +18,6 @@ public class GameMovement extends PassDestination implements GameInterface{
     }
 
     /**
-     * @param score user score
-     */
-    public void setScore(long score) {
-        GameMovement.score = score;
-    }
-
-    /**
      * Checks if cells are merged and increases user score.
      *
      * @param i X coordinate

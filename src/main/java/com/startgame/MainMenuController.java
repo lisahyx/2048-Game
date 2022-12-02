@@ -3,6 +3,8 @@ package com.startgame;
 import com.player.Username;
 import com.startgame.colortheme.ChangeColor;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -61,10 +64,26 @@ public class MainMenuController {
         Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
 
         int minLength = 1; // minimum user input length
+        username.addEventFilter(KeyEvent.KEY_TYPED, maxLength(5)); // maximum user input length
 
         // disable start button if user input is empty
-        startGame.disableProperty().bind(
-                username.textProperty().length().lessThan(minLength));
+        startGame.disableProperty().bind(username.textProperty().length().lessThan(minLength));
+    }
+
+    /**
+     * @param i maximum user input length
+     * @return event handler
+     */
+    public EventHandler<KeyEvent> maxLength(final Integer i) {
+        return new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent arg0) {
+                username = (TextField) arg0.getSource();
+                if (username.getText().length() >= i) {
+                    arg0.consume();
+                }
+            }
+        };
     }
 
     /**

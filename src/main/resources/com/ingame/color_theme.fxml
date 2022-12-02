@@ -8,18 +8,30 @@
 
 <AnchorPane fx:id="pane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: rgb(189, 177, 92);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.startgame.colortheme.ColorThemeController">
    <children>
-       <Text layoutX="223.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT MAIN COLOR THEME" wrappingWidth="226.05438232421875">
+       <Text layoutX="195.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT MAIN COLOR THEME" wrappingWidth="290.72100830078125">
            <font>
-               <Font size="34.0" />
+               <Font size="41.0" />
            </font>
        </Text>
-       <VBox layoutX="568.0" layoutY="245.0" prefHeight="136.0" prefWidth="90.0" spacing="20">
+       <VBox layoutX="569.0" layoutY="233.0" prefHeight="183.0" prefWidth="88.0" spacing="25.0">
            <children>
-               <Button fx:id="black" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Black" />
-               <Button fx:id="white" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="White" />
-               <Button fx:id="green" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Green" />
+               <Button fx:id="blue" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Blue">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+               <Button fx:id="green" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Green">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+               <Button fx:id="purple" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Purple">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
            </children>
        </VBox>
-      <Button id="green" fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="414.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="BACK" />
+      <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="431.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="BACK">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
    </children>
 </AnchorPane>

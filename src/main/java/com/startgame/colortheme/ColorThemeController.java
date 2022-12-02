@@ -32,19 +32,19 @@ public class ColorThemeController {
     private Button backButton;
 
     @FXML
-    private Button black;
-
-    @FXML
-    private Button white;
+    private Button blue;
 
     @FXML
     private Button green;
 
+    @FXML
+    private Button purple;
+
     public void initialize() {
         backButton.setOnAction(backToMenu);
-        black.setOnAction(e -> paneBlack());
-        white.setOnAction(e -> paneWhite());
+        blue.setOnAction(e -> paneBlack());
         green.setOnAction(e -> paneGreen());
+        purple.setOnAction(e -> panePurple());
     }
 
     int counter; // to indicate button clicks
@@ -61,53 +61,53 @@ public class ColorThemeController {
     }
 
     private void paneBlack() {
-        pane.setStyle("-fx-background-color: black"); // set background color
+        pane.setStyle("-fx-background-color: rgb(141, 191, 247)"); // set background color
 
         //disable other buttons
-        white.setDisable(true);
         green.setDisable(true);
+        purple.setDisable(true);
 
         counter++; // increase when button is clicked once
-        myColor = "black"; // indicate which background color is chosen
+        myColor = "blue"; // indicate which background color is chosen
 
         // enable other buttons when button is clicked twice
         if(counter==2) {
-            white.setDisable(false);
             green.setDisable(false);
+            purple.setDisable(false);
             counter=0; // reset counter
             myColor=null; // reset variable
         }
     }
 
-    private void paneWhite() {
-        pane.setStyle("-fx-background-color: white");
-
-        black.setDisable(true);
-        green.setDisable(true);
-
-        counter++;
-        myColor = "white";
-
-        if(counter==2) {
-            black.setDisable(false);
-            green.setDisable(false);
-            counter=0;
-            myColor = null;
-        }
-    }
-
     private void paneGreen() {
-        pane.setStyle("-fx-background-color: green");
+        pane.setStyle("-fx-background-color: rgb(114, 191, 59)");
 
-        black.setDisable(true);
-        white.setDisable(true);
+        blue.setDisable(true);
+        purple.setDisable(true);
 
         counter++;
         myColor = "green";
 
         if(counter==2) {
-            black.setDisable(false);
-            white.setDisable(false);
+            blue.setDisable(false);
+            purple.setDisable(false);
+            counter=0;
+            myColor = null;
+        }
+    }
+
+    private void panePurple() {
+        pane.setStyle("-fx-background-color: rgb(195, 182, 242)");
+
+        blue.setDisable(true);
+        green.setDisable(true);
+
+        counter++;
+        myColor = "purple";
+
+        if(counter==2) {
+            blue.setDisable(false);
+            green.setDisable(false);
             counter=0;
             myColor = "null";
         }

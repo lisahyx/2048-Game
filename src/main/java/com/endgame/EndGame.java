@@ -75,25 +75,25 @@ public class EndGame implements ButtonListener {
 
         // quit button
         Button quitButton = new Button("QUIT");
-        quitButton.setPrefSize(85,35);
+        quitButton.setPrefSize(88,39);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
 
         // main menu button
-        Button mainMenuButton = new Button("BACK TO MAIN MENU");
-        mainMenuButton.setPrefSize(150,35);
+        Button mainMenuButton = new Button("BACK");
+        mainMenuButton.setPrefSize(88,39);
         mainMenuButton.setTextFill(Color.BLACK);
         root.getChildren().add(mainMenuButton);
 
         // retry button
         Button retryButton = new Button("RETRY");
-        retryButton.setPrefSize(85,35);
+        retryButton.setPrefSize(88,39);
         retryButton.setTextFill(Color.BLACK);
         root.getChildren().add(retryButton);
 
         // high score button
         Button highScoreButton = new Button("HIGH SCORE");
-        highScoreButton.setPrefSize(150,35);
+        highScoreButton.setPrefSize(120,39);
         highScoreButton.setTextFill(Color.BLACK);
         root.getChildren().add(highScoreButton);
 
@@ -109,11 +109,11 @@ public class EndGame implements ButtonListener {
         vBox.prefHeightProperty().bind(primaryStage.heightProperty());
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(mainMenuButton, retryButton, quitButton);
+        hBox.getChildren().addAll(mainMenuButton, retryButton, highScoreButton, quitButton);
         hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(55);
+        hBox.setSpacing(40);
 
-        vBox.getChildren().addAll(text, scoreText, hBox, highScoreButton);
+        vBox.getChildren().addAll(text, scoreText, hBox);
 
         mainPane = new StackPane(vBox);
         mainPane.setPadding(new Insets(30));

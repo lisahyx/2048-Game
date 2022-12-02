@@ -67,7 +67,7 @@ public class GameStatus extends MoveDirection implements GameInterface {
 
                 EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                 root.getChildren().clear();
-                setScore(0);
+                score = 0;
             }
         } else if (haveEmptyCell == 1) {
             RandomNum.randomFillNumber(root, Game.textMaker);

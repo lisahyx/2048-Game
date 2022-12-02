@@ -1,10 +1,8 @@
 package com.startgame.gamemode;
 
 import com.ingame.Game;
-import com.ingame.GameMovement;
-import com.ingame.GameStatus;
 import com.player.Score;
-import com.startgame.colortheme.ColorThemeController;
+import com.startgame.colortheme.ChangeColor;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -31,8 +28,7 @@ public class GameScene implements ButtonListener {
     private final Score userScore = new Score();
     private Group gameRoot = new Group();
     private Scene gameScene;
-
-    long score = GameMovement.getScore();
+    long score = 0;
 
     /**
      * @param gameScene game scene
@@ -53,21 +49,12 @@ public class GameScene implements ButtonListener {
      */
     public void gameStart() {
         Group endgameRoot = new Group();
-        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
+        Scene endGameScene = ChangeColor.bgColor(endgameRoot, WIDTH, HEIGHT); // set background color according to user choice
 
         setGameRoot(gameRoot);
 
-        // change background color according to user choice
-        if(Objects.equals(ColorThemeController.getMyColor(), "black")) {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.BLACK);
-        } else if(Objects.equals(ColorThemeController.getMyColor(), "white")) {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.WHITE);
-        } else if (Objects.equals(ColorThemeController.getMyColor(), "green")) {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.GREEN);
-        } else {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-        }
-
+        // set background color according to user choice
+        gameScene = ChangeColor.bgColor(gameRoot, WIDTH, HEIGHT);
         setGameScene(gameScene);
 
         Stage primaryStage = new Stage();
@@ -82,7 +69,7 @@ public class GameScene implements ButtonListener {
 
         // quit button
         Button quitButton = new Button("QUIT");
-        quitButton.setPrefSize(85,35);
+        quitButton.setPrefSize(88,39);
         quitButton.setLayoutX(762);
         quitButton.setLayoutY(572);
         quitButton.setTextFill(Color.BLACK);
@@ -95,7 +82,7 @@ public class GameScene implements ButtonListener {
     }
 
     /**
-     * Saves user's score when quit button is selected.
+     * Saves new user's score as 0 or old user's old score when quit button is selected.
      *
      * @param event action event
      * @param primaryStage stage

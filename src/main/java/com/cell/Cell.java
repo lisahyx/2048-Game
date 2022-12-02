@@ -46,10 +46,10 @@ public class Cell extends ModifyCell{
                 rectangle.setFill(Color.rgb(255, 255, 255, 0.8));
                 break;
             case 2:
-                rectangle.setFill(Color.rgb(255, 197, 197, 0.7));
+                rectangle.setFill(Color.rgb(255, 197, 197, 0.8));
                 break;
             case 4:
-                rectangle.setFill(Color.rgb(255, 108, 45, 0.7));
+                rectangle.setFill(Color.rgb(255, 108, 45, 0.6));
                 break;
             case 8:
                 rectangle.setFill(Color.rgb(255, 208, 108, 0.7));

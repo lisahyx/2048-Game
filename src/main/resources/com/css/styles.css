@@ -1,7 +1,8 @@
-.text-area {
-     -fx-background-color: transparent;
+.text-area, .text-area .viewport, .text-area .content {
+    -fx-background-color: transparent ;
 }
 
 .text-area .text {
-  -fx-text-alignment: center;
+    -fx-text-alignment: center;
+    -fx-stroke-width: 1;
 }

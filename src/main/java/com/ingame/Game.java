@@ -43,13 +43,13 @@ public class Game extends GameStatus {
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("SCORE :");
-        text.setFont(Font.font(30));
-        text.relocate(750, 100);
+        text.setFont(Font.font(35));
+        text.relocate(730, 100);
 
         Text scoreText = new Text();
         root.getChildren().add(scoreText);
-        scoreText.relocate(750, 150);
-        scoreText.setFont(Font.font(20));
+        scoreText.relocate(730, 170);
+        scoreText.setFont(Font.font(33));
         scoreText.setText("0");
 
         RandomNum.randomFillNumber(root, textMaker);
