@@ -64,8 +64,19 @@ public class GameScene implements ButtonListener {
         game.gamePlay(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
         // display the Stage
+        primaryStage.setTitle("2048 Game");
+        primaryStage.centerOnScreen();
         primaryStage.show();
         gameRoot.requestFocus(); // take away focus from quit button
+
+        // save score when close window
+        primaryStage.setOnCloseRequest(event -> {
+            try {
+                userScore.compareScore(score);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         // quit button
         Button quitButton = new Button("QUIT");
@@ -76,9 +87,7 @@ public class GameScene implements ButtonListener {
         gameRoot.getChildren().add(quitButton);
 
         // quit button listener
-        quitButton.setOnAction(actionEvent -> {
-            quitButtonListener (actionEvent, primaryStage, gameRoot, score);
-        });
+        quitButton.setOnAction(actionEvent -> quitButtonListener (actionEvent, primaryStage, gameRoot, score));
     }
 
     /**

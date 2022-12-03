@@ -62,7 +62,7 @@ public class EndGame implements ButtonListener {
      * @param primaryStage stage
      * @param score user's score
      */
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
+    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, long score){
         Text text = new Text("GAME OVER");
         text.setFont(Font.font(80));
         root.getChildren().add(text);
@@ -127,7 +127,7 @@ public class EndGame implements ButtonListener {
                 try {
                     userScore.compareScore(score);
                     primaryStage.close();
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/main_menu.fxml")));
                     ChangeColor.fxmlColor(root);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -155,8 +155,14 @@ public class EndGame implements ButtonListener {
         });
 
         // quit button listener
-        quitButton.setOnAction(actionEvent -> {
-            quitButtonListener(actionEvent, primaryStage, root, score);
+        quitButton.setOnAction(actionEvent -> quitButtonListener(actionEvent, primaryStage, root, score));
+
+        // disable close window option
+        primaryStage.setOnCloseRequest(event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please exit by quit button.");
+            alert.showAndWait();
+            event.consume();
         });
 
         // high score button listener
@@ -166,7 +172,7 @@ public class EndGame implements ButtonListener {
                 Parent root;
                 try {
                     userScore.compareScore(score);
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/high_score_list.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/high_score_list.fxml")));
                     ChangeColor.fxmlColor(root);
                     primaryStage.close();
                 } catch (IOException e) {

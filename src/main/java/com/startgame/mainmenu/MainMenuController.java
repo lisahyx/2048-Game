@@ -1,10 +1,8 @@
-package com.startgame;
+package com.startgame.mainmenu;
 
 import com.player.Username;
 import com.startgame.colortheme.ChangeColor;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -75,13 +73,10 @@ public class MainMenuController {
      * @return event handler
      */
     public EventHandler<KeyEvent> maxLength(final Integer i) {
-        return new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent arg0) {
-                username = (TextField) arg0.getSource();
-                if (username.getText().length() >= i) {
-                    arg0.consume();
-                }
+        return arg0 -> {
+            username = (TextField) arg0.getSource();
+            if (username.getText().length() >= i) {
+                arg0.consume();
             }
         };
     }
@@ -98,14 +93,23 @@ public class MainMenuController {
 
         stage = (Stage) startGame.getScene().getWindow();
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/game_modes.fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/game_modes.fxml")));
             ChangeColor.fxmlColor(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
+
+        // disable close window option
+        stage.setOnCloseRequest(event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("This window cannot be closed.");
+            alert.showAndWait();
+            event.consume();
+        });
     }
 
     /**
@@ -123,13 +127,14 @@ public class MainMenuController {
 
             stage = (Stage) startGame.getScene().getWindow();
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/color_theme.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/color_theme.fxml")));
                 ChangeColor.fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         }
     };
