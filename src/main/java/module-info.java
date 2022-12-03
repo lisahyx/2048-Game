@@ -9,8 +9,6 @@ module com {
     opens com.endgame to javafx.fxml;
     exports com.player;
     opens com.player to javafx.fxml;
-    exports com.startgame;
-    opens com.startgame to javafx.fxml;
     exports com.cell;
     opens com.cell to javafx.fxml;
     exports com.startgame.colortheme;
@@ -19,4 +17,6 @@ module com {
     opens com.startgame.gamemode to javafx.fxml;
     exports com.main;
     opens com.main to javafx.fxml;
+    exports com.startgame.mainmenu;
+    opens com.startgame.mainmenu to javafx.fxml;
 }
