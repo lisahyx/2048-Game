@@ -18,24 +18,25 @@ import java.util.*;
 import static com.startgame.colortheme.ChangeColor.fxmlColor;
 
 /**
- * Reads all users' scores from a file and shows the sorted high score list.
+ * A controller for the high score list display scene that reads all users' scores
+ * from a file and shows the sorted high score list.
  *
  * @author  Lisa Ho Yen Xin
  * @version 2022-12-03
  * @since   2022-11-01
  */
-public class HighScore {
-    private static HighScore singleInstance = null;
+public class HighScoreController {
+    private static HighScoreController singleInstance = null;
 
     /**
      * Returns an active instance of the class if it exists.
-     * Otherwise, creates a new instance of the {@link HighScore} class.
+     * Otherwise, creates a new instance of the {@link HighScoreController} class.
      *
      * @return instance of class
      */
-    public static HighScore getInstance() {
+    public static HighScoreController getInstance() {
         if (singleInstance == null)
-            singleInstance = new HighScore();
+            singleInstance = new HighScoreController();
         return singleInstance;
     }
 
