@@ -14,9 +14,9 @@ import javafx.stage.Stage;
 /**
  * Formats the elements of the game scene and handles the operations when a key is pressed.
  *
- * @author  Lisa Ho Yen Xin - modified
- * @version %I%, %G%
- * @since   2020-11-1
+ * @author  Lisa Ho Yen Xin
+ * @version 2022-12-03
+ * @since   2022-11-01
  */
 public class Game extends GameStatus {
     Group root;

@@ -6,8 +6,8 @@ import java.io.IOException;
 
 /**
  * @author  Lisa Ho Yen Xin
- * @version %I%, %G%
- * @since   2020-11-1
+ * @version 2022-12-03
+ * @since   2022-11-01
  */
 public class Score {
     static long oldScore;

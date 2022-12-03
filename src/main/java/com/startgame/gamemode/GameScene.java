@@ -18,9 +18,9 @@ import java.util.Optional;
 /**
  * Formats game elements.
  *
- * @author  Lisa Ho Yen Xin
- * @version %I%, %G%
- * @since   2020-11-1
+ * @author  Lisa Ho Yen Xin - modified
+ * @version 2022-12-03
+ * @since   2022-11-01
  */
 public class GameScene implements ButtonListener {
     static final int WIDTH = 900;
