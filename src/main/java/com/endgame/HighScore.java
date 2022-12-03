@@ -60,9 +60,7 @@ public class HighScore {
     }
 
     /**
-     * Reads all the content from a file,
-     * <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\highScoreList.txt">
-     *  * highScoreList.txt</a>, which includes usernames and scores.
+     * Reads all the content from a file that includes usernames and scores.
      * Sorts the scores of all users in descending order and returns a sorted high score list.
      *
      * @return sorted high score list

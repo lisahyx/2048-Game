@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * A controller for <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\main_menu.fxml">main_menu.fxml</a>.
+ * A controller for the main menu scene.
  *
  * @author  Lisa Ho Yen Xin
  * @version %I%, %G%

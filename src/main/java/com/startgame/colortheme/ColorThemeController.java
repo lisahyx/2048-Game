@@ -16,8 +16,7 @@ import java.util.Objects;
 import static com.startgame.colortheme.ChangeColor.fxmlColor;
 
 /**
- * A controller for <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\color_theme.fxml">color_theme.fxml</a>.
- * <p>
+ * A controller for the color theme selection scene.
  * Sets background color and disables the other color buttons.
  * Assigns the background color chosen to a variable and increases counter
  * to indicate the number of button clicks.

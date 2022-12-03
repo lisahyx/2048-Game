@@ -5,9 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 
 /**
- * A controller for
- * <a href="file:C:\Users\lisah\IdeaProjects\COMP2042_CW_hfylh2\src\main\resources\com\Game\game_modes.fxml">
- * game_modes.fxml</a>.
+ * A controller for the game modes selection scene.
  *
  * @author  Lisa Ho Yen Xin
  * @version %I%, %G%
