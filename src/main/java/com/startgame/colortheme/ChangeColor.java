@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import java.util.Objects;
 
 /**
+ * Changes background color for all scenes according to user selection.
+ *
  * @author  Lisa Ho Yen Xin
  * @version 2022-12-03
  * @since   2022-11-01
@@ -31,6 +33,15 @@ public class ChangeColor {
         }
     }
 
+    /**
+     * Sets background color of javafx scenes according to the value stored in {@link ColorThemeController#myColor}.
+     * Sets background color as default color if no color is selected by the user.
+     *
+     * @param root background
+     * @param width width
+     * @param height height
+     * @return a scene with a background color that is chosen by the user
+     */
     public static Scene bgColor(Group root, int width, int height) {
         Scene scene;
         if(Objects.equals(ColorThemeController.getMyColor(), "blue")) {

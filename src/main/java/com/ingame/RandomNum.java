@@ -8,6 +8,8 @@ import javafx.scene.text.Text;
 import java.util.Random;
 
 /**
+ * Adds a random numbered cell between the numbers 2 and 4 in a random position on the game board.
+ *
  * @author  Lisa Ho Yen Xin
  * @version 2022-12-03
  * @since   2022-11-01

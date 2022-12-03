@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
+ * Saves user's highest score to file.
+ *
  * @author  Lisa Ho Yen Xin
  * @version 2022-12-03
  * @since   2022-11-01

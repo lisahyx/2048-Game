@@ -22,7 +22,7 @@ import java.util.Optional;
  * @version 2022-12-03
  * @since   2022-11-01
  */
-public class GameScene implements ButtonListener {
+public class GameScene implements ButtonInterface {
     static final int WIDTH = 900;
     static final int HEIGHT = 650;
     private final Score userScore = new Score();

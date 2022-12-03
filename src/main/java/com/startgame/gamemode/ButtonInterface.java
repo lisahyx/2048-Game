@@ -9,6 +9,6 @@ import javafx.stage.Stage;
  * @version 2022-12-03
  * @since   2022-11-01
  */
-public interface ButtonListener {
+public interface ButtonInterface {
     void quitButtonListener(ActionEvent event, Stage primaryStage, Group root, long score);
 }

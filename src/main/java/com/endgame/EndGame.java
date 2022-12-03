@@ -3,7 +3,7 @@ package com.endgame;
 import com.player.Score;
 import com.startgame.colortheme.ChangeColor;
 import com.startgame.gamemode.GameScene;
-import com.startgame.gamemode.ButtonListener;
+import com.startgame.gamemode.ButtonInterface;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +34,7 @@ import java.util.Optional;
  * @version 2022-12-03
  * @since   2022-11-01
  */
-public class EndGame implements ButtonListener {
+public class EndGame implements ButtonInterface {
     private static EndGame singleInstance = null;
     private EndGame(){
 
