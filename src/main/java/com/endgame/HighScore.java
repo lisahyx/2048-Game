@@ -80,22 +80,26 @@ public class HighScore {
         return String.join("\n", str);
     }
 
+    /**
+     * Returns the top ten user's usernames from the sorted high score list.
+     *
+     * @param sorted sorted high score list
+     * @return top ten usernames
+     * @throws IOException if fail to read the sorted high score list
+     */
     public String getNameList(String sorted) throws IOException {
+        ArrayList<String> nameStr = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(new StringReader(sorted));
 
         String line = bufferedReader.readLine();
         String username;
         int counter = 0;
 
-        ArrayList<String> nameStr = new ArrayList<>();
-
         while(line != null) {
             username = line.substring(0, line.indexOf(" "));
-            nameStr.add(username);
-
+            nameStr.add(username); // add username to list
             counter++;
             line = bufferedReader.readLine();
-
             if(counter==10){
                 break;
             }
@@ -103,22 +107,26 @@ public class HighScore {
         return String.join("\n", nameStr);
     }
 
+    /**
+     * Returns the top ten user's scores from the sorted high score list.
+     *
+     * @param sorted sorted high score list
+     * @return top ten users' scores
+     * @throws IOException if fail to read the sorted high score list
+     */
     public String getScoreList(String sorted) throws IOException {
+        ArrayList<String> scoreStr = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(new StringReader(sorted));
 
         String line = bufferedReader.readLine();
         String score;
         int counter = 0;
 
-        ArrayList<String> scoreStr = new ArrayList<>();
-
         while(line != null) {
             score = line.substring(line.indexOf(" ") + 1);
-            scoreStr.add(score);
-
+            scoreStr.add(score); // add score to list
             counter++;
             line = bufferedReader.readLine();
-
             if(counter==10){
                 break;
             }
