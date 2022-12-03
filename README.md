@@ -17,6 +17,7 @@ Download the zip file and navigate to <code>COMP2042_CW_hfylh2\src\main\java\com
 #### Game Play:
 1. Correct score calculation
 2. Do not save the score if a user quits in the middle of the game (set score to 0 or save user's old score)
+3. Only move cells by pressing LEFT, RIGHT, UP, DOWN keys
 
 #### Game Over: 
 1. Display user score, back to menu, retry level, high score, and quit button
@@ -32,6 +33,7 @@ Download the zip file and navigate to <code>COMP2042_CW_hfylh2\src\main\java\com
 
 ### Not implemented features: 
 1. Cell spawning condition is different from the original 2048 game to increase the pace of the game and decrease the time needed to complete a level
+2. No different high score list for different game levels
 
 ### New classes: 
 - Username.java
