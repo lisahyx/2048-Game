@@ -64,6 +64,8 @@ public class GameStatus extends MoveDirection implements GameInterface {
         if (haveEmptyCell == -1) {
             if (canNotMove()) {
                 primaryStage.setScene(endGameScene);
+                primaryStage.setTitle("2048 Game");
+                primaryStage.centerOnScreen();
 
                 EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                 root.getChildren().clear();

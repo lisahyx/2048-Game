@@ -40,7 +40,10 @@ public class HighScore {
     }
 
     @FXML
-    private TextArea highScoreList;
+    private TextArea usernameList;
+
+    @FXML
+    private TextArea scoreList;
 
     @FXML
     private Button backButton;
@@ -51,7 +54,8 @@ public class HighScore {
      * @throws IOException if fail to load file
      */
     public void initialize() throws IOException {
-        highScoreList.setText(sortLines());
+        usernameList.setText(getNameList(sortLines()));
+        scoreList.setText(getScoreList(sortLines()));
         backButton.setOnAction(backToMenu);
     }
 
@@ -73,32 +77,21 @@ public class HighScore {
                 Integer.parseInt(o2.substring(o2.indexOf(" ") + 1)),
                 Integer.parseInt(o1.substring(o1.indexOf(" ") + 1))));
 
-        return justifyContent(String.join("\n", str));
+        return String.join("\n", str);
     }
 
-    public String justifyContent(String sorted) throws IOException {
+    public String getNameList(String sorted) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new StringReader(sorted));
 
         String line = bufferedReader.readLine();
         String username;
-        String score;
-        int nameLength;
         int counter = 0;
 
-        ArrayList<String> justifyStr = new ArrayList<>();
+        ArrayList<String> nameStr = new ArrayList<>();
 
         while(line != null) {
             username = line.substring(0, line.indexOf(" "));
-            nameLength = username.length();
-            score = line.substring(line.indexOf(" ") + 1);
-
-            switch (nameLength) {
-                case 1 -> justifyStr.add(username + String.format("%1$" + (24) + "s", score));
-                case 2 -> justifyStr.add(username + String.format("%1$" + (22) + "s", score));
-                case 3 -> justifyStr.add(username + String.format("%1$" + (20) + "s", score));
-                case 4 -> justifyStr.add(username + String.format("%1$" + (18) + "s", score));
-                case 5 -> justifyStr.add(username + String.format("%1$" + (15) + "s", score));
-            }
+            nameStr.add(username);
 
             counter++;
             line = bufferedReader.readLine();
@@ -107,7 +100,30 @@ public class HighScore {
                 break;
             }
         }
-        return String.join("\n", justifyStr);
+        return String.join("\n", nameStr);
+    }
+
+    public String getScoreList(String sorted) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new StringReader(sorted));
+
+        String line = bufferedReader.readLine();
+        String score;
+        int counter = 0;
+
+        ArrayList<String> scoreStr = new ArrayList<>();
+
+        while(line != null) {
+            score = line.substring(line.indexOf(" ") + 1);
+            scoreStr.add(score);
+
+            counter++;
+            line = bufferedReader.readLine();
+
+            if(counter==10){
+                break;
+            }
+        }
+        return String.join("\n", scoreStr);
     }
 
     @FXML
@@ -119,13 +135,15 @@ public class HighScore {
 
             stage = (Stage) backButton.getScene().getWindow();
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/main_menu.fxml")));
                 fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("2048 Game");
+            stage.centerOnScreen();
             stage.show();
         }
     };

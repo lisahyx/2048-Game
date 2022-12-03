@@ -26,13 +26,14 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/main_menu.fxml")));
 
         Scene mainMenu = new Scene(root);
         primaryStage.setScene(mainMenu);
         primaryStage.setTitle("2048 Game");
         primaryStage.centerOnScreen();
         primaryStage.show();
+
         GameMusic.playMusic(); // play music
     }
 

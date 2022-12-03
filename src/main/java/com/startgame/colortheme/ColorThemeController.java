@@ -127,7 +127,7 @@ public class ColorThemeController {
 
             stage = (Stage) backButton.getScene().getWindow();
             try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ingame/main_menu.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/main_menu.fxml")));
                 fxmlColor(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
