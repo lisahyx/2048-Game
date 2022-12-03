@@ -33,7 +33,7 @@ Download the zip file and navigate to <code>COMP2042_CW_hfylh2\src\main\java\com
 
 ### Not implemented features: 
 1. Cell spawning condition is different from the original 2048 game to increase the pace of the game and decrease the time needed to complete a level
-2. No different high score list for different game levels
+2. No different high score list for different game levels to reduce unnecessary competition between users
 
 ### New classes: 
 - Username.java
