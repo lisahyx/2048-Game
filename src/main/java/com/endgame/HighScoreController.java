@@ -1,21 +1,18 @@
 package com.endgame;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-
-import static com.startgame.colortheme.ChangeColor.fxmlColor;
 
 /**
  * A controller for the high score list display scene that reads all users' scores
@@ -47,7 +44,7 @@ public class HighScoreController {
     private TextArea scoreList;
 
     @FXML
-    private Button backButton;
+    private Button quitButton;
 
     /**
      * Sets the text for the high score list when the contents of the fxml file have been completely loaded.
@@ -57,7 +54,7 @@ public class HighScoreController {
     public void initialize() throws IOException {
         usernameList.setText(getNameList(sortLines()));
         scoreList.setText(getScoreList(sortLines()));
-        backButton.setOnAction(backToMenu);
+        quitButton.setOnAction(quitGame);
     }
 
     /**
@@ -134,24 +131,15 @@ public class HighScoreController {
     }
 
     @FXML
-    EventHandler<ActionEvent> backToMenu = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            Stage stage;
-            Parent root;
+    EventHandler<ActionEvent> quitGame = actionEvent -> {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Dialog");
+        alert.setHeaderText("Quit from this page");
+        alert.setContentText("Are you sure?");
 
-            stage = (Stage) backButton.getScene().getWindow();
-            try {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/main_menu.fxml")));
-                fxmlColor(root);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("2048 Game");
-            stage.centerOnScreen();
-            stage.show();
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.orElse(null)  == ButtonType.OK) {
+            Platform.exit();
         }
     };
 }

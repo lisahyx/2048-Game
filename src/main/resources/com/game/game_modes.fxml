@@ -34,12 +34,6 @@
             <Font size="15.0"/>
          </font>
       </Button>
-      <Button id="blackout" alignment="CENTER" mnemonicParsing="false" onAction="#gameMode" prefHeight="39.0"
-              prefWidth="96.0" text="Blackout">
-         <font>
-            <Font size="15.0"/>
-         </font>
-      </Button>
    </VBox>
    <Text layoutX="195.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT A GAME MODE"
          wrappingWidth="253.38772583007812">

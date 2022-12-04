@@ -73,18 +73,6 @@ public class EndGame implements ButtonInterface {
         scoreText.setFont(Font.font(80));
         root.getChildren().add(scoreText);
 
-        // quit button
-        Button quitButton = new Button("QUIT");
-        quitButton.setPrefSize(88,39);
-        quitButton.setTextFill(Color.BLACK);
-        root.getChildren().add(quitButton);
-
-        // main menu button
-        Button mainMenuButton = new Button("BACK");
-        mainMenuButton.setPrefSize(88,39);
-        mainMenuButton.setTextFill(Color.BLACK);
-        root.getChildren().add(mainMenuButton);
-
         // retry button
         Button retryButton = new Button("RETRY");
         retryButton.setPrefSize(88,39);
@@ -96,6 +84,12 @@ public class EndGame implements ButtonInterface {
         highScoreButton.setPrefSize(120,39);
         highScoreButton.setTextFill(Color.BLACK);
         root.getChildren().add(highScoreButton);
+
+        // quit button
+        Button quitButton = new Button("QUIT");
+        quitButton.setPrefSize(88,39);
+        quitButton.setTextFill(Color.BLACK);
+        root.getChildren().add(quitButton);
 
         // organize all the elements
         StackPane mainPane;
@@ -109,36 +103,15 @@ public class EndGame implements ButtonInterface {
         vBox.prefHeightProperty().bind(primaryStage.heightProperty());
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(mainMenuButton, retryButton, highScoreButton, quitButton);
+        hBox.getChildren().addAll(retryButton, highScoreButton, quitButton);
         hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(40);
+        hBox.setSpacing(45);
 
         vBox.getChildren().addAll(text, scoreText, hBox);
 
         mainPane = new StackPane(vBox);
         mainPane.setPadding(new Insets(30));
         root.getChildren().add(mainPane);
-
-        //main menu button listener
-        mainMenuButton.setOnAction(new EventHandler<>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Parent root;
-                try {
-                    userScore.compareScore(score);
-                    primaryStage.close();
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/game/main_menu.fxml")));
-                    ChangeColor.fxmlColor(root);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                Scene mainMenu = new Scene(root);
-                primaryStage.setScene(mainMenu);
-                primaryStage.setTitle("2048 Game");
-                primaryStage.centerOnScreen();
-                primaryStage.show();
-            }
-        });
 
         //retry button listener
         retryButton.setOnAction(actionEvent -> {

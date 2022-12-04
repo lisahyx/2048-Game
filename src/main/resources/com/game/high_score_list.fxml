@@ -68,7 +68,7 @@
    <ImageView fitHeight="224.0" fitWidth="219.0" layoutX="20.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../media/stitch-dancing.gif" />
    </ImageView>
-   <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="557.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="88.0" text="BACK">
+   <Button fx:id="quitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="557.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="88.0" text="QUIT">
       <font>
          <Font size="15.0" />
       </font>
