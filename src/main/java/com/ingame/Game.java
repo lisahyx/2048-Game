@@ -52,6 +52,14 @@ public class Game extends GameStatus {
         scoreText.setFont(Font.font(33));
         scoreText.setText("0");
 
+        // timer
+        Text timerText = new Text();
+        Timer timer = new Timer();
+        timerText = timer.startTimer(timerText);
+        timerText.relocate(730, 230);
+        timerText.setFont(Font.font(26));
+        root.getChildren().add(timer.startTimer(timerText));
+
         RandomNum.randomFillNumber(root, textMaker);
         RandomNum.randomFillNumber(root, textMaker);
 
