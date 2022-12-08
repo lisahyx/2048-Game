@@ -130,12 +130,13 @@ public class EndGame implements ButtonInterface {
         // quit button listener
         quitButton.setOnAction(actionEvent -> quitButtonListener(actionEvent, primaryStage, root, score));
 
-        // disable close window option
+        // save score to file when close window
         primaryStage.setOnCloseRequest(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please exit by quit button.");
-            alert.showAndWait();
-            event.consume();
+            try {
+                userScore.compareScore(score);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         // high score button listener
@@ -151,6 +152,7 @@ public class EndGame implements ButtonInterface {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                Stage primaryStage = new Stage();
                 Scene highScore = new Scene(root);
                 primaryStage.setScene(highScore);
                 primaryStage.setTitle("High Score List");
