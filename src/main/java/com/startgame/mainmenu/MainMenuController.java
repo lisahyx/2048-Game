@@ -62,7 +62,7 @@ public class MainMenuController {
         Platform.runLater( () -> vbox.requestFocus() ); // remove focus from textfield
 
         int minLength = 1; // minimum user input length
-        username.addEventFilter(KeyEvent.KEY_TYPED, maxLength(5)); // maximum user input length
+        username.addEventFilter(KeyEvent.KEY_TYPED, maxLength(6)); // maximum user input length
 
         // disable start button if user input is empty
         startGame.disableProperty().bind(username.textProperty().length().lessThan(minLength));

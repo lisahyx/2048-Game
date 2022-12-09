@@ -65,7 +65,7 @@ public class HighScoreController {
      * @throws IOException if fail to load file
      */
     private String sortLines() throws IOException {
-        String allContent = new String(Files.readAllBytes(Paths.get("highScoreList.txt")));
+        String allContent = new String(Files.readAllBytes(Paths.get("src/main/resources/com/textfile/highScoreList.txt")));
         ArrayList<String> str = new ArrayList<>(Arrays.asList(allContent.split("\n")));
 
         // sort in descending order
@@ -131,7 +131,7 @@ public class HighScoreController {
      * @throws IOException if fail to load file
      */
     public String getName() throws IOException {
-        BufferedReader input = new BufferedReader(new FileReader("highScoreList.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("src/main/resources/com/textfile/highScoreList.txt"));
         String last = null, line;
 
         while ((line = input.readLine()) != null) {

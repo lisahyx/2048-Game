@@ -39,7 +39,7 @@ public class Score {
      */
     public void compareScore(long newScore) throws IOException {
         FileWriter file_writer;
-        file_writer = new FileWriter("highScoreList.txt", true);
+        file_writer = new FileWriter("src/main/resources/com/textfile/highScoreList.txt", true);
         BufferedWriter buffered_Writer = new BufferedWriter(file_writer);
 
         if(newScore > getOldScore()) {

@@ -31,9 +31,9 @@ public class Username {
      * @throws IOException if fail to load file
      */
     public void addUsername(String username) throws IOException {
-        File oldFile = new File("highScoreList.txt");
+        File oldFile = new File("src/main/resources/com/textfile/highScoreList.txt");
         oldFile.createNewFile(); // create file if file does not exist
-        File newFile = new File("newHighScoreList.txt");
+        File newFile = new File("src/main/resources/com/textfile/newHighScoreList.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader(oldFile));
 

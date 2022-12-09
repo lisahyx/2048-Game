@@ -14,38 +14,41 @@
    <ImageView fitHeight="650.0" fitWidth="531.0" layoutX="186.0" pickOnBounds="true">
       <Image url="@../media/frame-big.png" />
    </ImageView>
-   <VBox layoutX="298.0" layoutY="148.0" prefHeight="405.0" prefWidth="317.0" spacing="1.1">
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+   <VBox layoutX="276.0" layoutY="148.0" prefHeight="405.0" prefWidth="339.0" spacing="1.1">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
-      <ImageView fitHeight="37.0" fitWidth="315.0" pickOnBounds="true">
+      <ImageView fitHeight="37.0" fitWidth="342.0" pickOnBounds="true">
          <Image url="@../media/frame-name.png" />
       </ImageView>
    </VBox>
+   <ImageView fitHeight="224.0" fitWidth="219.0" layoutX="20.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../media/stitch-dancing.gif" />
+   </ImageView>
    <VBox alignment="CENTER" layoutX="280.0" layoutY="46.0" prefHeight="530.0" prefWidth="353.0" spacing="10.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HIGH SCORE LIST" textAlignment="CENTER">
          <font>
@@ -53,21 +56,18 @@
          </font>
       </Text>
       <HBox prefHeight="415.0" prefWidth="353.0">
-         <TextArea fx:id="usernameList" editable="false" prefHeight="100.0" prefWidth="176.0" stylesheets="@../css/styles.css">
+         <TextArea fx:id="usernameList" editable="false" prefHeight="415.0" prefWidth="209.0" stylesheets="@../css/styles.css">
             <font>
                <Font size="27.0" />
             </font>
          </TextArea>
-         <TextArea fx:id="scoreList" prefHeight="100.0" prefWidth="175.0" stylesheets="@../css/styles.css">
+         <TextArea fx:id="scoreList" editable="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="415.0" prefWidth="122.0" stylesheets="@../css/styles.css">
             <font>
                <Font size="27.0" />
             </font>
          </TextArea>
       </HBox>
    </VBox>
-   <ImageView fitHeight="224.0" fitWidth="219.0" layoutX="20.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../media/stitch-dancing.gif" />
-   </ImageView>
    <Button fx:id="quitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="557.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="88.0" text="QUIT">
       <font>
          <Font size="15.0" />
