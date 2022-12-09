@@ -2,6 +2,7 @@ package com.ingame;
 
 import com.cell.Cell;
 import com.cell.TextMaker;
+import com.startgame.gamemode.GameModesController;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * Formats the elements of the game scene and handles the operations when a key is pressed.
@@ -37,6 +40,11 @@ public class Game extends GameStatus {
             for (int j = 0; j < getN(); j++) {
                 cells[i][j] = new Cell((j) * getLENGTH() + (j + 1) * getDistanceBetweenCells(),
                         (i) * getLENGTH() + (i + 1) * getDistanceBetweenCells(), getLENGTH(), root);
+                if (Objects.equals(GameModesController.getMode(), "blackout")) {
+                    Blackout[][] blackCell = new Blackout[getN()][getN()];
+                    blackCell[i][j] = new Blackout((j) * getLENGTH() + (j + 1) * getDistanceBetweenCells(),
+                            (i) * getLENGTH() + (i + 1) * getDistanceBetweenCells(), getLENGTH(), root);
+                }
             }
         }
 

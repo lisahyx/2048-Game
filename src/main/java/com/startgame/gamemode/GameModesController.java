@@ -12,6 +12,12 @@ import javafx.scene.Node;
  * @since   2022-11-01
  */
 public class GameModesController {
+    static String mode = null;
+
+    public static String getMode() {
+        return mode;
+    }
+
     /**
      * Gets ids of buttons and sets the number of cells on the game board
      * according to the button selected before loading the game.
@@ -27,6 +33,7 @@ public class GameModesController {
             case "3x3" -> status.setN(3);
             case "4x4" -> status.setN(4);
             case "5x5" -> status.setN(5);
+            case "blackout" -> mode = "blackout";
         }
         ((Node) event.getSource()).getScene().getWindow().hide();
         game.gameStart();
