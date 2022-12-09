@@ -95,12 +95,49 @@ public class HighScoreController {
             username = line.substring(0, line.indexOf(" "));
             nameStr.add(username); // add username to list
             counter++;
+            checkName(username, counter);
             line = bufferedReader.readLine();
             if(counter==10){
                 break;
             }
         }
         return String.join("\n", nameStr);
+    }
+
+    /**
+     * Checks if the current user is among the top 10 players
+     * and shows a congratulations message.
+     *
+     * @param username username
+     * @param rank ranking
+     * @throws IOException if fail to load file
+     */
+    public void checkName(String username, int rank) throws IOException {
+        String currentUser = getName();
+
+        if (currentUser.equals(username)){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Congratulations!");
+            alert.setHeaderText("You are among the top 10!");
+            alert.setContentText("Current ranking: " + rank);
+            alert.showAndWait();
+        }
+    }
+
+    /**
+     * Returns the username of the current user.
+     *
+     * @return current user's name
+     * @throws IOException if fail to load file
+     */
+    public String getName() throws IOException {
+        BufferedReader input = new BufferedReader(new FileReader("highScoreList.txt"));
+        String last = null, line;
+
+        while ((line = input.readLine()) != null) {
+            last = line;
+        }
+        return Objects.requireNonNull(last).substring(0, last.indexOf(" "));
     }
 
     /**
