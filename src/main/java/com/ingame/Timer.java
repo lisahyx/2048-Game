@@ -5,12 +5,20 @@ import javafx.animation.Timeline;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+/**
+ * Starts a timer upon starting the game.
+ */
 public class Timer {
     Timeline timeline;
     int mins = 0;
     int secs = 0;
     int millis = 0;
 
+    /**
+     * Changes the text for the timer.
+     *
+     * @param text text for timer
+     */
     void change(Text text) {
         if(millis == 1000) {
             secs++;
@@ -25,8 +33,13 @@ public class Timer {
                 + (((millis/10) == 0) ? "00" : (((millis/100) == 0) ? "0" : "")) + millis++);
     }
 
-    public Text startTimer(Text text)
-    {
+    /**
+     * Starts the timer.
+     *
+     * @param text text of timer
+     * @return text for timer
+     */
+    Text startTimer(Text text) {
         timeline = new Timeline(new KeyFrame(Duration.millis(1), event -> change(text)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(false);
