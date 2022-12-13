@@ -1,7 +1,7 @@
 ## Lisa Ho Yen Xin 20297507  
 
 ### How to compile
-Download the zip file and navigate to <code>COMP2042_CW_hfylh2\src\main\java\com\main</code> and run <code>main.java</code>
+Download the zip file and open the inner folder <code>COMP2042_CW_hfylh2</code> as a new project. Navigate to <code>COMP2042_CW_hfylh2\src\main\java\com\main</code> and run <code>main.java</code>
 
 ### Javadoc
 <code>COMP2042_CW_hfylh2\javadoc</code>
