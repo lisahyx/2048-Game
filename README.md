@@ -1,10 +1,19 @@
 ## Lisa Ho Yen Xin 20297507  
 
 ### How to compile
-Download the zip file and open the inner folder <code>COMP2042_CW_hfylh2</code> as a new project. Navigate to <code>COMP2042_CW_hfylh2\src\main\java\com\main</code> and run <code>main.java</code>
+Download the zip file and open the innermost folder <code>COMP2042_CW_hfylh2</code> as a new project. 
+Navigate to <code>COMP2042_CW_hfylh2\src\main\java\com\main</code> and run <code>main.java</code>
 
 ### Javadoc
 <code>COMP2042_CW_hfylh2\javadoc</code>
+
+### Maintenance and Extension:
+Split large classes into multiple classes so that a class only has a single responsibility.
+Cleaned up code by removing duplicated code and variable declarations.
+Removed unused parameters for methods. 
+Split classes that have similar functionality to  packages.
+Set class visibility to package-private and improve encapsulation by using accessor and mutator methods for private 
+variables. 
 
 ### Working features:
 #### Start Menu:
