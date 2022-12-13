@@ -8,6 +8,9 @@ package com.ingame;
  * @since   2022-11-01
  */
 public class MoveDirection extends GameMovement {
+    /**
+     * Handles cells movements based on left direction for all cells on the game board.
+     */
     public void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
@@ -19,6 +22,9 @@ public class MoveDirection extends GameMovement {
         }
     }
 
+    /**
+     * Handles cells movements based on right direction for all cells on the game board.
+     */
     public void moveRight() {
         for (int i = 0; i < n; i++) {
             for (int j = n - 1; j >= 0; j--) {
@@ -30,6 +36,9 @@ public class MoveDirection extends GameMovement {
         }
     }
 
+    /**
+     * Handles cells movements based on upward direction for all cells on the game board.
+     */
     public void moveUp() {
         for (int j = 0; j < n; j++) {
             for (int i = 1; i < n; i++) {
@@ -41,6 +50,9 @@ public class MoveDirection extends GameMovement {
         }
     }
 
+    /**
+     * Handles cells movements based on downward direction for all cells on the game board.
+     */
     public void moveDown() {
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
@@ -51,7 +63,4 @@ public class MoveDirection extends GameMovement {
             }
         }
     }
-
-
-
 }
