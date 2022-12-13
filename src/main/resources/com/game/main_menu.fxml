@@ -25,7 +25,10 @@
             </font>
          </Text>
          <HBox alignment="CENTER" layoutX="9.0" layoutY="153.0" prefHeight="62.0" prefWidth="305.0" spacing="10">
-            <TextField fx:id="username" prefHeight="39.0" prefWidth="152.0" promptText="USERNAME" />
+            <TextField fx:id="username" prefHeight="39.0" prefWidth="133.0" promptText="USERNAME">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
             <Button fx:id="startGame" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Start">
                <font>
                   <Font size="15.0" />
