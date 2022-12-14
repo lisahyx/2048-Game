@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -64,6 +65,7 @@ public class GameScene implements ButtonInterface {
         game.gamePlay(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
         // display the Stage
+        primaryStage.getIcons().add(new Image("https://logodix.com/logo/1649438.jpg"));
         primaryStage.setTitle("2048 Game");
         primaryStage.centerOnScreen();
         primaryStage.show();

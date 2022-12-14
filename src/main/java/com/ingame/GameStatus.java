@@ -3,6 +3,7 @@ package com.ingame;
 import com.endgame.EndGame;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -64,6 +65,7 @@ public class GameStatus extends MoveDirection implements GameInterface {
         if (haveEmptyCell == -1) {
             if (canNotMove()) {
                 primaryStage.setScene(endGameScene);
+                primaryStage.getIcons().add(new Image("https://logodix.com/logo/1649438.jpg"));
                 primaryStage.setTitle("2048 Game");
                 primaryStage.centerOnScreen();
 

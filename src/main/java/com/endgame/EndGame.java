@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -155,7 +156,8 @@ public class EndGame implements ButtonInterface {
                 Stage primaryStage = new Stage();
                 Scene highScore = new Scene(root);
                 primaryStage.setScene(highScore);
-                primaryStage.setTitle("High Score List");
+                primaryStage.getIcons().add(new Image("https://logodix.com/logo/1649438.jpg"));
+                primaryStage.setTitle("2048 Game");
                 primaryStage.centerOnScreen();
                 primaryStage.show();
             }
